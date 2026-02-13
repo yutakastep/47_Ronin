@@ -276,9 +276,6 @@ animations = [{
 collision_layer = 2
 script = ExtResource("1_mwkte")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1849175173]
-offset = Vector2(0, -20)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_njcak")

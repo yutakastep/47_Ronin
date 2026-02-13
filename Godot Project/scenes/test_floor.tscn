@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://da2wsfkwg1gh2"]
+[gd_scene format=3 uid="uid://da2wsfkwg1gh2"]
 
 [ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/character_ronin.tscn" id="1_rmnn5"]
 
@@ -6,17 +6,15 @@
 a = Vector2(319, 179)
 b = Vector2(0, 181)
 
-[node name="TestFloor" type="Node2D"]
+[node name="TestFloor" type="Node2D" unique_id=1794482630]
 
-[node name="Floor" type="Node2D" parent="."]
+[node name="Floor" type="Node2D" parent="." unique_id=768037548]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor" unique_id=1051459337]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" unique_id=174746123]
 shape = SubResource("SegmentShape2D_vrwqx")
 
-[node name="CharacterRonin" parent="." instance=ExtResource("1_rmnn5")]
+[node name="CharacterRonin" parent="." unique_id=1792477495 instance=ExtResource("1_rmnn5")]
 position = Vector2(162, 162)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterRonin"]
