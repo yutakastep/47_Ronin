@@ -18,18 +18,20 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack"):
 			if Input.is_action_pressed("ui_up"):
 				attack(4, "attack_up")
+				parent.throw(true, $AnimatedSprite2D.flip_h, 0)
+
 			match attack_index:
 				0:
 					attack(1, "attack_one")
-					parent.throw($AnimatedSprite2D.flip_h)
+					parent.throw(false, $AnimatedSprite2D.flip_h, 0)
 				1:
 					if !attacking:
 						attack(2, "attack_two")
-						parent.throw($AnimatedSprite2D.flip_h)
+						parent.throw(false, $AnimatedSprite2D.flip_h,0)
 				2:
 					if !attacking:
 						attack(3, "attack_three")
-						parent.throw($AnimatedSprite2D.flip_h)
+						parent.throw(false, $AnimatedSprite2D.flip_h, 3)
 		elif !attacking and !jumping and attack_index == 0:
 			if Input.is_action_just_pressed("space"):
 				$AnimatedSprite2D.play("jump")

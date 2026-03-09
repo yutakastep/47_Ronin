@@ -58,10 +58,6 @@ region = Rect2(1024, 0, 64, 64)
 atlas = ExtResource("2_i020w")
 region = Rect2(1088, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11hoj"]
-atlas = ExtResource("2_i020w")
-region = Rect2(1152, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tebv6"]
 atlas = ExtResource("2_i020w")
 region = Rect2(1216, 0, 64, 64)
@@ -250,9 +246,6 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pucoe")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_11hoj")
-}, {
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_tebv6")
 }, {
@@ -411,8 +404,8 @@ shape = SubResource("RectangleShape2D_njcak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"reload"
-frame = 2
+animation = &"attack_three"
+frame = 6
 frame_progress = 1.0
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1681577053]
