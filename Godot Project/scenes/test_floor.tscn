@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://da2wsfkwg1gh2"]
 
-[ext_resource type="Script" uid="uid://bwirt6ql1hxm6" path="res://scenes/test_floor.gd" id="1_ms78c"]
-[ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/Ronins/sword_ronin.tscn" id="1_rmnn5"]
+[ext_resource type="Script" path="res://scenes/test_floor.gd" id="1_ms78c"]
 [ext_resource type="PackedScene" uid="uid://degaho87b4dqm" path="res://scenes/test_pickup.tscn" id="2_if5rx"]
-[ext_resource type="PackedScene" uid="uid://ye868sbugbad" path="res://scenes/Ronins/spear_ronin.tscn" id="2_ro66u"]
-[ext_resource type="PackedScene" uid="uid://cs7rn0mpk0seb" path="res://scenes/Ronins/kunai_ronin.tscn" id="4_d58p2"]
+[ext_resource type="PackedScene" path="res://scenes/Ronins/sword_ronin.tscn" id="2_m6p5g"]
+[ext_resource type="PackedScene" path="res://scenes/Ronins/spear_ronin.tscn" id="2_ro66u"]
+[ext_resource type="PackedScene" path="res://scenes/Ronins/kunai_ronin.tscn" id="4_d58p2"]
 [ext_resource type="Script" uid="uid://mtyjba4d8xl" path="res://scenes/misc/node_2d.gd" id="5_m6p5g"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vrwqx"]
@@ -22,10 +22,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" unique_id=174746123]
 shape = SubResource("SegmentShape2D_vrwqx")
 
-[node name="SwordRonin" parent="." unique_id=1792477495 instance=ExtResource("1_rmnn5")]
-position = Vector2(162, 162)
+[node name="SwordRonin" parent="." unique_id=1005983935 instance=ExtResource("2_m6p5g")]
+position = Vector2(165.27135, 165.4926)
 
-[node name="SpearRonin" parent="." unique_id=1005983935 instance=ExtResource("2_ro66u")]
+[node name="SpearRonin" parent="." unique_id=1970301985 instance=ExtResource("2_ro66u")]
 position = Vector2(162, 162)
 
 [node name="test pickup" parent="." unique_id=815839702 instance=ExtResource("2_if5rx")]

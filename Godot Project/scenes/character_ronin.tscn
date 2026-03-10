@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://mqpq4ly5s2v"]
+
+[ext_resource type="Script" path="res://scripts/character_ronin.gd" id="1_mwkte"]
+[ext_resource type="Texture2D" path="res://sprites/Hat_Ronin/Ronin_Hat_Breathing-Sheet.png" id="3_uitew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njcak"]
+size = Vector2(11, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1p53"]
+atlas = ExtResource("3_uitew")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_futt5"]
+atlas = ExtResource("3_uitew")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc15b"]
+atlas = ExtResource("3_uitew")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wam2"]
+atlas = ExtResource("3_uitew")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6pewp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1p53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_futt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc15b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wam2")
+}],
+"loop": true,
+"name": &"breathing",
+"speed": 5.0
+}]
+
+[node name="CharacterRonin" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_mwkte")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3.5)
+shape = SubResource("RectangleShape2D_njcak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6pewp")
+animation = &"breathing"
+frame_progress = 0.08162351

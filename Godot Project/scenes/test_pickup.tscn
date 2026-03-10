@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://degaho87b4dqm"]
+[gd_scene load_steps=0 format=3 uid="uid://degaho87b4dqm"]
 
 [ext_resource type="Texture2D" uid="uid://dprwulp5vavk2" path="res://sprites/pickups/Card.png" id="1_3nwh7"]
 [ext_resource type="Script" uid="uid://x3jwpu4ym6u8" path="res://scripts/test_pickup.gd" id="1_uycdj"]
