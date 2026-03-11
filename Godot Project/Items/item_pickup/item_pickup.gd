@@ -30,7 +30,6 @@ func item_picked_up():
 	queue_free()
 	pass
 
-
 func _set_item_data(value: ItemData):
 	item_data = value
 	_update_texture()
