@@ -7,11 +7,15 @@ var combo_count: int = 0
 var character = "#1"
 @onready var combo_timer: Timer = $ComboTimer
 
+var spawn_position : Vector2
 var attack_index = 0
 var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+
+func _ready() -> void:
+	global_position = spawn_position
 
 func _process(delta: float) -> void:
 	if !sheathing:

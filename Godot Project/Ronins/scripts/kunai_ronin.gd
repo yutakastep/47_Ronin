@@ -10,11 +10,15 @@ var combo_count: int = 0
 # this is temporary, will change depending on if we need to make a character manager
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
 
+var spawn_position : Vector2
 var attack_index = 0
 var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+
+func _ready() -> void:
+	global_position = spawn_position
 
 func _process(delta: float) -> void:
 	if !sheathing:
