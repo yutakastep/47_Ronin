@@ -100,6 +100,10 @@ texture = ExtResource("2_q3736")
 [sub_resource type="TileSet" id="TileSet_2t2tv"]
 sources/0 = SubResource("TileSetAtlasSource_5oy84")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_q3736"]
+a = Vector2(320, 0)
+b = Vector2(321, 180)
+
 [node name="Room00" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=387508808]
@@ -110,3 +114,11 @@ tile_set = SubResource("TileSet_gjn77")
 [node name="Background" type="TileMapLayer" parent="." unique_id=563352755]
 tile_map_data = PackedByteArray("AAD//wIAAAACAAAAAAD//wMAAAACAAEAAAAAAAIAAAADAAAAAAAAAAMAAAADAAEAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAEAAAD7/wIAAAABAAAAAAD7/wMAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_2t2tv")
+
+[node name="Wall" type="Node2D" parent="." unique_id=235965724]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall" unique_id=930272209]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall/StaticBody2D" unique_id=978813592]
+position = Vector2(-79, -119)
+shape = SubResource("SegmentShape2D_q3736")
