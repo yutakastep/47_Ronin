@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var kunai = load("res://misc/scenes/kunai.tscn")
-@onready var ronins = load_ronin("res://Ronins/scenes/")
 @onready var samurai = load("res://Floor1/Enemies/scenes/enemy_samurai.tscn")
 
 var ronin_spawn = Vector2(10, 170)
@@ -9,26 +8,12 @@ var enemy_spawn = Vector2(300, 170)
 
 func _ready():
 	var ronin = PlayerManager.spawn_player(self, ronin_spawn)
-	ronin.spawn_position = ronin_spawn
-	add_child.call_deferred(ronin)
 	
 	var enemy = samurai.instantiate()
 	enemy.spawn_position = enemy_spawn
 	enemy.player = ronin
 	add_child.call_deferred(enemy)
 
-func load_ronin(path: String) -> Array:
-	var files = []
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
-				files.append(path.path_join(file_name))
-			file_name = dir.get_next()
-	return files
-	
 	
 func throw(up, direction, combo_end):
 	var instance = kunai.instantiate()
