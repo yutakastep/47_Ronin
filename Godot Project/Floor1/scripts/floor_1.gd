@@ -7,17 +7,19 @@ var ronin_spawn = Vector2(0, 10)
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	room_generation()
+	var dimensions = room_generation()
 	var ronin = load(ronins.pick_random()).instantiate()
 	var camera = Camera2D.new()
 	camera.offset = Vector2(0, -20)
+	camera.limit_left = -240
+	camera.limit_right = dimensions.x
 	camera.make_current()
 	ronin.spawn_position = ronin_spawn
 	ronin.speed = 200
 	ronin.add_child(camera)
 	add_child.call_deferred(ronin)
 	
-func room_generation():
+func room_generation() -> Vector2:
 	rng.randomize()
 	var rooms = []
 	var room_w = 480
@@ -31,6 +33,7 @@ func room_generation():
 	rooms.push_back(load("res://Floor1/scenes/Rooms/Room_End.tscn").instantiate())
 	rooms[rooms.size()-1].position.x = room_w * (rooms.size()-1)
 	add_child.call_deferred(rooms[rooms.size()-1])
+	return Vector2(room_w * (rooms.size()-1)+240, room_h)
 
 func load_ronin(path: String) -> Array:
 	var files = []
