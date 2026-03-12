@@ -10,8 +10,10 @@ func _ready():
 	room_generation()
 	var ronin = load(ronins.pick_random()).instantiate()
 	var camera = Camera2D.new()
+	camera.offset = Vector2(0, -20)
 	camera.make_current()
 	ronin.spawn_position = ronin_spawn
+	ronin.speed = 200
 	ronin.add_child(camera)
 	add_child.call_deferred(ronin)
 	
@@ -27,7 +29,7 @@ func room_generation():
 		rooms[i].position.x = room_w * i
 		add_child.call_deferred(rooms[i])
 	rooms.push_back(load("res://Floor1/scenes/Rooms/Room_End.tscn").instantiate())
-	rooms[rooms.size()-1].position.x = room_w * rooms.size()-1
+	rooms[rooms.size()-1].position.x = room_w * (rooms.size()-1)
 	add_child.call_deferred(rooms[rooms.size()-1])
 
 func load_ronin(path: String) -> Array:
