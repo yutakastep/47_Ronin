@@ -323,7 +323,7 @@ height = 39.997173
 radius = 6.0
 height = 36.0
 
-[node name="SpearRonin" type="CharacterBody2D" unique_id=1005983935]
+[node name="SpearRonin" type="CharacterBody2D" unique_id=1005983935 groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vw0bq")

@@ -10,7 +10,7 @@ func room_generation() -> Vector2:
 	var room_h = 240
 	rooms.push_back(load("res://Floor1/scenes/Rooms/Room_Start.tscn").instantiate())
 	add_child.call_deferred(rooms[0])
-	for i in range(1, rng.randi_range(3, 7)):
+	for i in range(1, rng.randi_range(5, 7)):
 		rooms.push_back(load(normal_rooms.pick_random()).instantiate())
 		rooms[i].position.x = room_w * i
 		add_child.call_deferred(rooms[i])

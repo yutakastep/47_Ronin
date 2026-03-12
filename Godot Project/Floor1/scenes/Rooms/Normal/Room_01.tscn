@@ -100,7 +100,7 @@ texture = ExtResource("2_lwyxi")
 [sub_resource type="TileSet" id="TileSet_kof16"]
 sources/0 = SubResource("TileSetAtlasSource_xe0q4")
 
-[node name="Room00" type="Node2D" unique_id=1932579217]
+[node name="Room01" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=1246416978]
 use_parent_material = true

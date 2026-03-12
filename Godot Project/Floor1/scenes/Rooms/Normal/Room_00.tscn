@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_ua12y"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_e484k"]
 [ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="3_mcgul"]
+[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Enemies/scripts/enemy_trigger.gd" id="4_47ang"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_ua12y")
@@ -101,6 +102,9 @@ texture = ExtResource("2_e484k")
 [sub_resource type="TileSet" id="TileSet_47ang"]
 sources/0 = SubResource("TileSetAtlasSource_mcgul")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcgul"]
+size = Vector2(478, 255)
+
 [node name="Room00" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=1437422529]
@@ -113,5 +117,17 @@ visibility_layer = 2
 tile_map_data = PackedByteArray("AADz/wIAAAAAAAAAAADz/wMAAAAAAAEAAAD0/wIAAAABAAAAAAD0/wMAAAABAAEAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAEAAAD7/wIAAAABAAAAAAD7/wMAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAALAAIAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_47ang")
 
-[node name="EnemySamurai" parent="." unique_id=10856245 instance=ExtResource("3_mcgul")]
-position = Vector2(-6, 47)
+[node name="EnemyTrigger" type="Area2D" parent="." unique_id=1685843166]
+collision_mask = 2
+script = ExtResource("4_47ang")
+enemy_scene = ExtResource("3_mcgul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTrigger" unique_id=854680512]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_mcgul")
+
+[node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=1889600459]
+position = Vector2(0, 46)
+
+[connection signal="body_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_shape_entered"]
