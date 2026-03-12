@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_ua12y"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_e484k"]
+[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="3_mcgul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_ua12y")
@@ -111,3 +112,6 @@ tile_set = SubResource("TileSet_gjn77")
 visibility_layer = 2
 tile_map_data = PackedByteArray("AADz/wIAAAAAAAAAAADz/wMAAAAAAAEAAAD0/wIAAAABAAAAAAD0/wMAAAABAAEAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAEAAAD7/wIAAAABAAAAAAD7/wMAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAALAAIAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_47ang")
+
+[node name="EnemySamurai" parent="." unique_id=10856245 instance=ExtResource("3_mcgul")]
+position = Vector2(-6, 47)

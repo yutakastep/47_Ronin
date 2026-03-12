@@ -108,4 +108,5 @@ tile_map_data = PackedByteArray("AADx//j/AAAIAAAAAADx//n/AAAIAAEAAADx//r/AAAIAAA
 tile_set = SubResource("TileSet_gjn77")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1193342867]
+tile_map_data = PackedByteArray("AAD//wIAAAAAAAAAAAD//wMAAAAAAAEAAAAAAAIAAAABAAAAAAAAAAMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_kof16")

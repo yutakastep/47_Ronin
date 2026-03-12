@@ -14,6 +14,7 @@ func _ready():
 func spawn_player(parent, spawn_position):
 	var scene = load(ronins.pick_random())
 	player = scene.instantiate()
+	player.name = "Player"
 	player.spawn_position = spawn_position
 	parent.add_child(player)
 	return player

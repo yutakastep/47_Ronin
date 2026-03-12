@@ -9,9 +9,6 @@ var player : CharacterBody2D
 
 var near_player = false
 
-func _ready() -> void:
-	global_position = spawn_position
-
 func _process(delta: float) -> void:
 	match state:
 		"walking":

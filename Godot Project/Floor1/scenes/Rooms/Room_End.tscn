@@ -104,7 +104,7 @@ sources/0 = SubResource("TileSetAtlasSource_5oy84")
 a = Vector2(320, 0)
 b = Vector2(321, 180)
 
-[node name="Room00" type="Node2D" unique_id=1932579217]
+[node name="RoomEnd" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=387508808]
 use_parent_material = true
