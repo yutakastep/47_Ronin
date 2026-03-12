@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneLoader="*uid://cms4760ux2bj5"
 SaveManager="*uid://ph65jp8jymtk"
 PauseMenu="*uid://b3phf0po0ogvr"
-SceneLoader="*uid://cms4760ux2bj5"
 PlayerManager="*uid://clmcb38j63xqe"
 
 [display]
