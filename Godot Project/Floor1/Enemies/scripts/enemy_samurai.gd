@@ -14,6 +14,9 @@ var health = 3
 var near_player = false
 var knocked_back = false
 
+func _ready() -> void:
+	global_position = spawn_position
+
 func _process(delta: float) -> void:
 	match state:
 		"walking":
