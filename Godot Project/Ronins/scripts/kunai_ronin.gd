@@ -6,6 +6,7 @@ class_name KunaiRonin extends CharacterBody2D
 var combo_count: int = 0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parent = get_parent()
+@onready var knockback_velocity = 0
 
 # this is temporary, will change depending on if we need to make a character manager
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
@@ -16,6 +17,7 @@ var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+var knocked_back = false
 
 var health = 3
 
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 					if !attacking:
 						attack(3, "attack_three")
 						parent.throw(false, $AnimatedSprite2D.flip_h, 3)
-		elif !attacking and !jumping and attack_index == 0:
+		elif !attacking and !jumping and !knocked_back and attack_index == 0:
 			if Input.is_action_just_pressed("space"):
 				$AnimatedSprite2D.play("jump")
 				jumping = true
@@ -62,7 +64,18 @@ func _physics_process(delta):
 	# Add gravity every frame
 	velocity.y += gravity * delta
 	
-	if !attacking && $ComboTimer.is_stopped():
+	if knocked_back:
+		velocity.x = knockback_velocity
+		if knockback_velocity < 0:
+			knockback_velocity += 4
+		else:
+			knockback_velocity -= 4
+		
+		if -2 < knockback_velocity && knockback_velocity < 2:
+			knocked_back = false
+			velocity.x = 0
+	
+	elif !attacking && $ComboTimer.is_stopped():
 		velocity.x = Input.get_axis("ui_left", "ui_right") * speed
 	elif !jumping && !sheathing:
 		velocity.x = 0
@@ -133,7 +146,11 @@ func increase_speed(spd_inc_amount):
 
 
 func _on_hit_detection_area_entered(area: Area2D) -> void:
-	print("kunai ronin hit")
-	health -= 1
-	if health <= 0:
-		queue_free()
+	if area.get_parent() is CharacterBody2D:
+		$Flash.play("hit")
+		print("kunai ronin hit")
+		knockback_velocity = 100 if area.get_parent().direction > 0 else -100
+		knocked_back = true
+		health -= 1
+		if health <= 0:
+			queue_free()

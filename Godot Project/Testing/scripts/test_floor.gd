@@ -36,6 +36,7 @@ func spawn_enemy():
 	enemy.spawn_position = enemy_spawn
 	enemy.player = current_ronin
 	add_child.call_deferred(enemy)
+	enemy.tree_exiting.connect(_on_enemy_death)
 	enemies.push_back(enemy)
 	
 func throw(up, direction, combo_end):
@@ -63,3 +64,6 @@ func _on_ronin_death():
 	for enemy in enemies:
 		if enemy:
 			enemy.player = current_ronin
+			
+func _on_enemy_death():
+	spawn_enemy()

@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://ciktj4k4ygngx"]
 
 [ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://Ronins/scripts/sword_ronin.gd" id="1_mwkte"]
+[ext_resource type="Shader" uid="uid://ct86xqawakua3" path="res://misc/scripts/hit_effect.gdshader" id="2_q0wx7"]
 [ext_resource type="Texture2D" uid="uid://7vj2r0f7xrvc" path="res://Ronins/sprites/#1/Hat_Ronin_Attack.png" id="2_uxbe1"]
 [ext_resource type="Texture2D" uid="uid://d3vxntx1w0770" path="res://Ronins/sprites/#1/Ronin_Hat_Breathing.png" id="3_uxbe1"]
 [ext_resource type="Texture2D" uid="uid://c8ql1fak3oq3q" path="res://Ronins/sprites/#1/up_attack.png" id="3_vaxsq"]
 [ext_resource type="Texture2D" uid="uid://b1vlg53rlb71c" path="res://Ronins/sprites/#1/Hat_Ronin_Walking.png" id="4_uitew"]
 [ext_resource type="Texture2D" uid="uid://kw2ncpnw12wt" path="res://Ronins/sprites/#1/Hat_Ronin_Jump.png" id="4_vaxsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um34y"]
+resource_local_to_scene = true
+shader = ExtResource("2_q0wx7")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_on = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vaxsq"]
 atlas = ExtResource("2_uxbe1")
@@ -384,12 +391,49 @@ height = 55.36422
 radius = 22.0
 height = 44.0
 
+[sub_resource type="Animation" id="Animation_umsw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_h3g8s"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yr4o5"]
+_data = {
+&"RESET": SubResource("Animation_umsw2"),
+&"hit": SubResource("Animation_h3g8s")
+}
+
 [node name="SwordRonin" type="CharacterBody2D" unique_id=1005983935 groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mwkte")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
+material = SubResource("ShaderMaterial_um34y")
 sprite_frames = SubResource("SpriteFrames_6pewp")
 animation = &"attack_one"
 
@@ -458,6 +502,9 @@ shape = SubResource("CapsuleShape2D_umsw2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1757050938]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_h3g8s")
+
+[node name="Flash" type="AnimationPlayer" parent="." unique_id=320872806]
+libraries/ = SubResource("AnimationLibrary_yr4o5")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

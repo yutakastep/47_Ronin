@@ -6,6 +6,7 @@ class_name SwordRonin extends CharacterBody2D
 var combo_count: int = 0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var hitboxes = [$Hitboxes/AttackOne, $Hitboxes/AttackTwo, $Hitboxes/AttackThree, $Hitboxes/AttackUp] 
+@onready var knockback_velocity = 0
 
 var spawn_position : Vector2
 var attack_index = 0
@@ -13,6 +14,7 @@ var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+var knocked_back = false
 
 var health = 3
 
@@ -34,6 +36,7 @@ func _process(delta: float) -> void:
 				2:
 					if !attacking:
 						attack(3, "attack_three")
+						
 		if attacking:
 			match attack_index:
 				1:
@@ -44,7 +47,8 @@ func _process(delta: float) -> void:
 					set_hitbox($Hitboxes/AttackThree, $AnimatedSprite2D.frame in [2, 3, 4])
 				4:
 					set_hitbox($Hitboxes/AttackUp, $AnimatedSprite2D.frame in [5, 6, 7])
-		elif !jumping and attack_index == 0:
+					
+		elif !jumping and !knocked_back and attack_index == 0:
 			if Input.is_action_just_pressed("space"):
 				$AnimatedSprite2D.play("jump")
 				jumping = true
@@ -66,7 +70,18 @@ func _physics_process(delta):
 	# Add gravity every frame
 	velocity.y += gravity * delta
 	
-	if !attacking && $ComboTimer.is_stopped():
+	if knocked_back:
+		velocity.x = knockback_velocity
+		if knockback_velocity < 0:
+			knockback_velocity += 4
+		else:
+			knockback_velocity -= 4
+		
+		if -2 < knockback_velocity && knockback_velocity < 2:
+			knocked_back = false
+			velocity.x = 0
+	
+	elif !attacking && $ComboTimer.is_stopped():
 		velocity.x = Input.get_axis("ui_left", "ui_right") * speed
 	elif !jumping && !sheathing:
 		velocity.x = 0
@@ -121,10 +136,14 @@ func _on_combo_timer_timeout() -> void:
 	$ComboTimer.stop()
 
 func _on_hit_detection_area_entered(area: Area2D) -> void:
-	print("sword ronin hit")
-	health -= 1
-	if health <= 0:
-		queue_free()
+	if area.get_parent() is CharacterBody2D:
+		print("sword ronin hit")
+		$Flash.play("hit")
+		knockback_velocity = 100 if area.get_parent().direction > 0 else -100
+		knocked_back = true
+		health -= 1
+		if health <= 0:
+			queue_free()
 		
 # function to increase speed for item pickups
 # might need a global item pickup manager for all the ronin
