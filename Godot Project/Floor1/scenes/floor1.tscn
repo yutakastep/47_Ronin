@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bwn8mxxu0yxk8" path="res://Floor1/scripts/floor_1.gd" id="1_3lov3"]
 [ext_resource type="Script" uid="uid://cqv72gsjpscfp" path="res://Floor1/scripts/room_manager.gd" id="2_j6tjg"]
+[ext_resource type="Script" uid="uid://dn47dnfc3rkb4" path="res://Floor1/scripts/enemy_manager.gd" id="3_3lov3"]
 
 [node name="Start" type="Node2D" unique_id=1468128343]
 script = ExtResource("1_3lov3")
 
 [node name="RoomManager" type="Node2D" parent="." unique_id=1420800065]
 script = ExtResource("2_j6tjg")
+
+[node name="EnemyManager" type="Node2D" parent="." unique_id=720214965]
+script = ExtResource("3_3lov3")
