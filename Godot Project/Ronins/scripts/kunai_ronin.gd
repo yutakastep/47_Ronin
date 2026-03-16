@@ -27,6 +27,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !sheathing:
+		if Input.is_action_just_pressed("interact"):
+			GameEvents.interact.emit()
+			
 		if Input.is_action_just_pressed("attack"):
 			if Input.is_action_pressed("ui_up"):
 				attack(4, "attack_up")

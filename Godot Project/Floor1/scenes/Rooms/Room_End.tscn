@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_bk4dc"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_q3736"]
+[ext_resource type="Script" uid="uid://d1blodfpugr2r" path="res://Floor1/Triggers/scripts/room_trigger.gd" id="3_5oy84"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_bk4dc")
@@ -104,6 +105,9 @@ sources/0 = SubResource("TileSetAtlasSource_5oy84")
 a = Vector2(320, 0)
 b = Vector2(321, 180)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmc2y"]
+size = Vector2(32, 28)
+
 [node name="RoomEnd" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=387508808]
@@ -122,3 +126,14 @@ tile_set = SubResource("TileSet_2t2tv")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall/StaticBody2D" unique_id=978813592]
 position = Vector2(-79, -119)
 shape = SubResource("SegmentShape2D_q3736")
+
+[node name="RoomTrigger" type="Area2D" parent="." unique_id=1894688382]
+collision_mask = 2
+script = ExtResource("3_5oy84")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTrigger" unique_id=1471335823]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_pmc2y")
+
+[connection signal="body_entered" from="RoomTrigger" to="RoomTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="RoomTrigger" to="RoomTrigger" method="_on_body_exit"]

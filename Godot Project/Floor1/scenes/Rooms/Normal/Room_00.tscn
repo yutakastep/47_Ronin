@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_ua12y"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_e484k"]
 [ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="3_mcgul"]
-[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Enemies/scripts/enemy_trigger.gd" id="4_47ang"]
+[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="4_47ang"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_ua12y")

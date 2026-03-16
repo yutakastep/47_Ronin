@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c1h3m4iaywfb7"]
+
+[ext_resource type="Script" uid="uid://d1blodfpugr2r" path="res://Floor1/Triggers/scripts/room_trigger.gd" id="1_2jks0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmc2y"]
+size = Vector2(25, 28)
+
+[node name="RoomTrigger" type="Area2D" unique_id=1894688382]
+script = ExtResource("1_2jks0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471335823]
+shape = SubResource("RectangleShape2D_pmc2y")
