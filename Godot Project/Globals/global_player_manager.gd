@@ -16,6 +16,7 @@ func spawn_player(parent, spawn_position):
 	player = scene.instantiate()
 	player.name = "Player"
 	player.spawn_position = spawn_position
+	player.add_to_group("Player")
 	parent.add_child.call_deferred(player)
 	return player
 

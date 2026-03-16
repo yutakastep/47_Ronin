@@ -15,12 +15,15 @@ var near_player = false
 var knocked_back = false
 
 func _ready() -> void:
-	global_position = spawn_position
+	#global_position = spawn_position
+	pass
 
 func _process(delta: float) -> void:
 	match state:
 		"walking":
-			if !knocked_back:
+			if !is_instance_valid(player):
+				pass
+			elif !knocked_back:
 				walking(player.global_position, delta)
 				if velocity.x < 0:
 					$AnimatedSprite2D.flip_h = true
@@ -58,6 +61,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 	move_and_slide()
+	#print(global_position)
 
 func walking(target, delta):
 	direction = (target.x - global_position.x)

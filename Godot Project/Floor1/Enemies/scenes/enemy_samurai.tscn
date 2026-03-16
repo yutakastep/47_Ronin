@@ -171,6 +171,8 @@ _data = {
 }
 
 [node name="EnemySamurai" type="CharacterBody2D" unique_id=10856245]
+light_mask = 9
+visibility_layer = 5
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_yi7cw")

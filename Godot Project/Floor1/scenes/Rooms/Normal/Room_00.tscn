@@ -127,7 +127,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_mcgul")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=1889600459]
-position = Vector2(0, 46)
+position = Vector2(2, 37)
 
 [connection signal="body_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_entered"]
 [connection signal="body_shape_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_shape_entered"]
