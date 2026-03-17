@@ -1,10 +1,11 @@
 [gd_scene format=4 uid="uid://beggru0mb0lxt"]
 
-[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_q1d5x"]
-[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_me7yl"]
+[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_dp3ed"]
+[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_iwjgb"]
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_r3upn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tnu62"]
-texture = ExtResource("1_q1d5x")
+texture = ExtResource("1_dp3ed")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -83,7 +84,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_tnu62")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpkg2"]
-texture = ExtResource("2_me7yl")
+texture = ExtResource("2_iwjgb")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -109,3 +110,9 @@ tile_set = SubResource("TileSet_nunx4")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1590233617]
 tile_set = SubResource("TileSet_aahfd")
+
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("3_r3upn")]
+end = true
+left = true
+right = true
+section = "\"midair\""

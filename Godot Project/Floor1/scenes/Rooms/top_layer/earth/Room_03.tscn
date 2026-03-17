@@ -1,12 +1,14 @@
-[gd_scene format=4 uid="uid://2t8l6sqs7otl"]
+[gd_scene format=4 uid="uid://db2cb2plpp3b0"]
 
-[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_ua12y"]
-[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_e484k"]
-[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="3_mcgul"]
-[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="4_47ang"]
+[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_v78rr"]
+[ext_resource type="Texture2D" uid="uid://cuqrtaiefaiqd" path="res://Floor1/sprites/tile_map_bg_02.png" id="2_q8jfm"]
+[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="3_8yev1"]
+[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="4_tevl4"]
+[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="5_17gt8"]
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="6_aa8yh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
-texture = ExtResource("1_ua12y")
+texture = ExtResource("1_v78rr")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -84,8 +86,43 @@ texture = ExtResource("1_ua12y")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ikvyn")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcgul"]
-texture = ExtResource("2_e484k")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v78rr"]
+texture = ExtResource("2_q8jfm")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8jfm"]
+texture = ExtResource("3_8yev1")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -100,12 +137,18 @@ texture = ExtResource("2_e484k")
 5:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_47ang"]
-sources/0 = SubResource("TileSetAtlasSource_mcgul")
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_v78rr")
+sources/2 = SubResource("TileSetAtlasSource_q8jfm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcgul"]
 size = Vector2(478, 255)
 
-[node name="Room00" type="Node2D" unique_id=1932579217]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_v78rr"]
+a = Vector2(320, 0)
+b = Vector2(321, 180)
+
+[node name="Room01" type="Node2D" unique_id=1932579217]
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=1437422529]
 use_parent_material = true
@@ -114,20 +157,45 @@ tile_set = SubResource("TileSet_gjn77")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=138752325]
 visibility_layer = 2
-tile_map_data = PackedByteArray("AADz/wIAAAAAAAAAAADz/wMAAAAAAAEAAAD0/wIAAAABAAAAAAD0/wMAAAABAAEAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAEAAAD7/wIAAAABAAAAAAD7/wMAAAABAAEAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAALAAIAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AADx//z/AQACAAQAAADx//3/AQACAAUAAADx//7/AQACAAYAAADx/wIAAgAAAAAAAADx/wMAAgAAAAEAAADy//z/AQADAAQAAADy//3/AQADAAUAAADy//7/AQADAAYAAADy/wAAAQACAAQAAADy/wEAAQACAAUAAADy/wIAAQACAAYAAADy/wMAAgABAAEAAADz/wAAAQADAAQAAADz/wEAAQADAAUAAADz/wIAAQADAAYAAAD0/wIAAgAAAAAAAAD0/wMAAgAAAAEAAAD1//v/AQACAAQAAAD1//z/AQACAAUAAAD1//3/AQACAAYAAAD1/wAAAQACAAQAAAD1/wEAAQACAAUAAAD1/wIAAQACAAYAAAD1/wMAAgABAAEAAAD2//v/AQADAAQAAAD2//z/AQADAAUAAAD2//3/AQADAAYAAAD2/wAAAQADAAQAAAD2/wEAAQADAAUAAAD2/wIAAQADAAYAAAD2/wMAAgAAAAEAAAD3//n/AQACAAQAAAD3//r/AQACAAUAAAD3//v/AQACAAYAAAD3//z/AQACAAQAAAD3//3/AQACAAUAAAD3//7/AQACAAYAAAD3/wIAAgABAAAAAAD3/wMAAgABAAEAAAD4//n/AQADAAQAAAD4//r/AQADAAUAAAD4//v/AQADAAYAAAD4//z/AQADAAQAAAD4//3/AQADAAUAAAD4//7/AQADAAYAAAD4/wAAAQACAAQAAAD4/wEAAQACAAUAAAD4/wIAAQACAAYAAAD5//v/AQACAAQAAAD5//z/AQACAAUAAAD5//3/AQACAAYAAAD5/wAAAQADAAQAAAD5/wEAAQADAAUAAAD5/wIAAQADAAYAAAD5/wMAAgAAAAEAAAD6//v/AQADAAQAAAD6//z/AQADAAUAAAD6//3/AQADAAYAAAD6/wIAAgABAAAAAAD6/wMAAgABAAEAAAALAAIAAgAAAAAAAAALAAMAAgAAAAEAAAAMAAIAAgABAAAAAAAMAAMAAgABAAEAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAEAAAAGAAIAAgABAAAAAAAGAAMAAgABAAEAAAA=")
+tile_set = SubResource("TileSet_47ang")
+
+[node name="Background2" type="TileMapLayer" parent="." unique_id=1775141033]
+visibility_layer = 2
+tile_map_data = PackedByteArray("AADy//v/AQACAAQAAADy//z/AQACAAUAAADy//3/AQACAAYAAADy//7/AQAAAAQAAADy////AQAAAAUAAADy/wAAAQAAAAgAAADy/wEAAQAAAAgAAADy/wIAAQAAAAgAAADy/wMAAQAAAAkAAADz//v/AQADAAQAAADz//z/AQADAAUAAADz//3/AQADAAYAAADz//7/AQABAAQAAADz////AQABAAUAAADz/wAAAQABAAgAAADz/wEAAQABAAgAAADz/wIAAQABAAgAAADz/wMAAQABAAkAAAD1//j/AQACAAQAAAD1//n/AQACAAUAAAD1//r/AQACAAYAAAD1//v/AQAAAAUAAAD1//z/AQACAAcAAAD1//3/AQACAAcAAAD1//7/AQACAAgAAAD1////AQACAAcAAAD1/wAAAQACAAgAAAD1/wEAAQACAAcAAAD1/wIAAQACAAgAAAD1/wMAAQACAAkAAAD2//j/AQADAAQAAAD2//n/AQADAAUAAAD2//r/AQADAAYAAAD2//v/AQABAAUAAAD2//z/AQADAAcAAAD2//3/AQADAAcAAAD2//7/AQADAAgAAAD2////AQADAAcAAAD2/wAAAQADAAgAAAD2/wEAAQADAAcAAAD2/wIAAQADAAgAAAD2/wMAAQADAAkAAAD4//n/AQACAAQAAAD4//r/AQACAAUAAAD4//v/AQACAAYAAAD4//z/AQAAAAUAAAD4//3/AQAAAAYAAAD4//7/AQACAAcAAAD4////AQACAAgAAAD4/wAAAQAAAAcAAAD4/wEAAQACAAgAAAD4/wIAAQACAAgAAAD4/wMAAQACAAkAAAD5//n/AQADAAQAAAD5//r/AQADAAUAAAD5//v/AQADAAYAAAD5//z/AQABAAUAAAD5//3/AQABAAYAAAD5//7/AQADAAcAAAD5////AQADAAgAAAD5/wAAAQABAAcAAAD5/wEAAQADAAgAAAD5/wIAAQADAAgAAAD5/wMAAQADAAkAAAA=")
+tile_set = SubResource("TileSet_47ang")
+
+[node name="Background3" type="TileMapLayer" parent="." unique_id=1924235593]
+visibility_layer = 2
+tile_map_data = PackedByteArray("AADx//j/AQAAAAAAAADx//n/AQAAAAEAAADx//r/AQAAAAIAAADx//v/AQAAAAUAAADx//z/AQAAAAMAAADx//3/AQAAAAQAAADx//7/AQAAAAgAAADx////AQAAAAgAAADx/wAAAQAAAAgAAADx/wEAAQAAAAUAAADx/wIAAQACAAcAAADx/wMAAQACAAkAAADy//j/AQABAAAAAADy//n/AQABAAEAAADy//r/AQABAAIAAADy//v/AQABAAUAAADy//z/AQABAAMAAADy//3/AQABAAQAAADy//7/AQABAAgAAADy////AQABAAgAAADy/wAAAQABAAgAAADy/wEAAQABAAUAAADy/wIAAQADAAcAAADy/wMAAQADAAkAAAD0//3/AQACAAQAAAD0//7/AQACAAUAAAD0////AQACAAYAAAD0/wAAAQAAAAYAAAD0/wEAAQACAAcAAAD0/wIAAQACAAcAAAD0/wMAAQAAAAkAAAD1//3/AQADAAQAAAD1//7/AQADAAUAAAD1////AQADAAYAAAD1/wAAAQABAAYAAAD1/wEAAQADAAcAAAD1/wIAAQADAAcAAAD1/wMAAQABAAkAAAD2//7/AQACAAQAAAD2////AQACAAUAAAD2/wAAAQACAAYAAAD2/wEAAQACAAcAAAD2/wIAAQACAAcAAAD2/wMAAQAAAAkAAAD3//7/AQADAAQAAAD3////AQADAAUAAAD3/wAAAQADAAYAAAD3/wEAAQADAAcAAAD3/wIAAQADAAcAAAD3/wMAAQABAAkAAAD5//3/AQACAAQAAAD5//7/AQACAAUAAAD5////AQACAAYAAAD5/wAAAQACAAcAAAD5/wEAAQACAAcAAAD5/wIAAQAAAAYAAAD5/wMAAQAAAAkAAAD6//3/AQADAAQAAAD6//7/AQADAAUAAAD6////AQADAAYAAAD6/wAAAQADAAcAAAD6/wEAAQADAAcAAAD6/wIAAQABAAYAAAD6/wMAAQABAAkAAAA=")
+tile_set = SubResource("TileSet_47ang")
+
+[node name="Background4" type="TileMapLayer" parent="." unique_id=793723655]
+visibility_layer = 2
+tile_map_data = PackedByteArray("AADx//7/AQACAAQAAADx////AQACAAUAAADx/wAAAQACAAYAAADx/wEAAQACAAcAAADx/wIAAQACAAgAAADx/wMAAQACAAkAAADy//7/AQADAAQAAADy////AQADAAUAAADy/wAAAQADAAYAAADy/wEAAQADAAcAAADy/wIAAQADAAgAAADy/wMAAQADAAkAAAD0//r/AQACAAQAAAD0//v/AQACAAUAAAD0//z/AQACAAYAAAD0//3/AQAAAAMAAAD0//7/AQAAAAQAAAD0////AQAAAAUAAAD0/wAAAQAAAAYAAAD0/wEAAQAAAAcAAAD0/wIAAQAAAAgAAAD0/wMAAQAAAAkAAAD1//r/AQADAAQAAAD1//v/AQADAAUAAAD1//z/AQADAAYAAAD1//3/AQABAAMAAAD1//7/AQABAAQAAAD1////AQABAAUAAAD1/wAAAQABAAYAAAD1/wEAAQABAAcAAAD1/wIAAQABAAgAAAD1/wMAAQABAAkAAAD4//v/AQACAAQAAAD4//z/AQACAAUAAAD4//3/AQACAAYAAAD4//7/AQACAAcAAAD4////AQACAAgAAAD4/wAAAQACAAcAAAD4/wEAAQAAAAcAAAD4/wIAAQAAAAgAAAD4/wMAAQACAAkAAAD5//v/AQADAAQAAAD5//z/AQADAAUAAAD5//3/AQADAAYAAAD5//7/AQADAAcAAAD5////AQADAAgAAAD5/wAAAQADAAcAAAD5/wEAAQABAAcAAAD5/wIAAQABAAgAAAD5/wMAAQADAAkAAAA=")
 tile_set = SubResource("TileSet_47ang")
 
 [node name="EnemyTrigger" type="Area2D" parent="." unique_id=1685843166]
 collision_mask = 2
-script = ExtResource("4_47ang")
-enemy_scene = ExtResource("3_mcgul")
+script = ExtResource("4_tevl4")
+enemy_scene = ExtResource("5_17gt8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTrigger" unique_id=854680512]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_mcgul")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=1889600459]
-position = Vector2(2, 37)
+position = Vector2(-50, 37)
+
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("6_aa8yh")]
+right = true
+section = "\"earth\""
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1272938303]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=669833772]
+position = Vector2(-402, -119)
+shape = SubResource("SegmentShape2D_v78rr")
 
 [connection signal="body_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_entered"]
 [connection signal="body_shape_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_shape_entered"]

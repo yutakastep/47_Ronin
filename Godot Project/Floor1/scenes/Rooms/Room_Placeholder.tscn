@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cxcn82v0q1yrp"]
+
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="1_gcw85"]
+
+[node name="Room_Placeholder" type="Node2D" unique_id=95058305]
+
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("1_gcw85")]
+section = "placeholder"
+path = "Room_Placeholder"

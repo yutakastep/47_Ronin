@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://chaymbv7rgmyh"]
 
-[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_2tc0w"]
-[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_r3mj3"]
-[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="3_wk36c"]
-[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="4_dsswo"]
+[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_xx6l0"]
+[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_3dfsp"]
+[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="3_gortc"]
+[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="4_mfhod"]
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="5_vb8ka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
-texture = ExtResource("1_2tc0w")
+texture = ExtResource("1_xx6l0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -85,7 +86,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ikvyn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk36c"]
-texture = ExtResource("2_r3mj3")
+texture = ExtResource("2_3dfsp")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -118,15 +119,20 @@ tile_set = SubResource("TileSet_dsswo")
 
 [node name="EnemyTrigger" type="Area2D" parent="." unique_id=1897613037]
 collision_mask = 2
-script = ExtResource("3_wk36c")
-enemy_scene = ExtResource("4_dsswo")
+script = ExtResource("3_gortc")
+enemy_scene = ExtResource("4_mfhod")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTrigger" unique_id=666080978]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nbujr")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=2104374696]
-position = Vector2(142, 17)
+position = Vector2(0, 43)
+
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("5_vb8ka")]
+left = true
+right = true
+section = "\"earth\""
 
 [connection signal="body_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_entered"]
 [connection signal="body_shape_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_shape_entered"]
