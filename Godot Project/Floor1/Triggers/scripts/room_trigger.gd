@@ -1,5 +1,9 @@
 extends Node2D
 
+func _ready():
+	self.connect("body_entered", _on_body_entered)
+	self.connect("body_exited", _on_body_exit)
+
 func _on_body_entered(body: Node2D) -> void:
 	print("Trigger touched by", body.name)
 	if(body.is_in_group("Player")):

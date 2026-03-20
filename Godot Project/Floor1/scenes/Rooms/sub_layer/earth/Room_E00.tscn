@@ -262,8 +262,12 @@ section = "earth"
 
 [node name="RoomTrigger" type="Area2D" parent="." unique_id=1894688382]
 position = Vector2(0, 83)
+collision_mask = 2
 script = ExtResource("11_er8w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTrigger" unique_id=1471335823]
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_pmc2y")
+
+[connection signal="body_entered" from="RoomTrigger" to="RoomTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="RoomTrigger" to="RoomTrigger" method="_on_body_exit"]

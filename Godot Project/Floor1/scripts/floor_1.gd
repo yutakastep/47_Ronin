@@ -1,17 +1,25 @@
 extends Node2D
 @onready var kunai = load("res://misc/scenes/kunai.tscn")
 @onready var ronins = load_ronin("res://Ronins/scenes/")
-@onready var dimensions = get_node("RoomManager").room_generation()
+
+var dimensions : Array
 
 var ronin_spawn = Vector2(0, 15)
 var enemy_spawn = Vector2(300, 170)
 
 var enemies = []
+var boss_floor_number = 5
 
 var current_ronin : CharacterBody2D
 
 func _ready():
 	GameEvents.floor_count = GameEvents.floor_count + 1
+	if GameEvents.floor_count == boss_floor_number:
+		pass
+	elif GameEvents.floor_count % 2 == 0:
+		dimensions = get_node("SpecialManager").room_generation()
+	else:
+		dimensions = get_node("RoomManager").room_generation()
 	ronin_spawn = dimensions[1]
 	spawn_ronin()
 	

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_vu7ik"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_wh4yg"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_jkypc"]
+[ext_resource type="PackedScene" uid="uid://5cax32njh6np" path="res://Floor1/Triggers/scenes/respawn_trigger.tscn" id="4_wh4yg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_vu7ik")
@@ -121,3 +122,18 @@ tile_set = SubResource("TileSet_kof16")
 left = true
 right = true
 section = "midair"
+
+[node name="RespawnTrigger" parent="." unique_id=1917955833 instance=ExtResource("4_wh4yg")]
+position = Vector2(-224, 8)
+
+[node name="RespawnTrigger2" parent="." unique_id=370657292 instance=ExtResource("4_wh4yg")]
+position = Vector2(-128, -4)
+
+[node name="RespawnTrigger3" parent="." unique_id=969854265 instance=ExtResource("4_wh4yg")]
+position = Vector2(0, 8)
+
+[node name="RespawnTrigger4" parent="." unique_id=90688771 instance=ExtResource("4_wh4yg")]
+position = Vector2(128, -2)
+
+[node name="RespawnTrigger5" parent="." unique_id=1591158761 instance=ExtResource("4_wh4yg")]
+position = Vector2(225, 7)
