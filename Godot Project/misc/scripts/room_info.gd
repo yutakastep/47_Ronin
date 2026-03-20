@@ -9,3 +9,4 @@ extends Node2D
 @export var keyword : String = "Placeholder"
 @export var x : int = -1
 @export var y : int = -1
+@export var associated_room : Array[String] = []

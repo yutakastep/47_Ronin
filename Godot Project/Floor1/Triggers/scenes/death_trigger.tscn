@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://df35tm73l1jvt"]
+
+[ext_resource type="Script" uid="uid://cdw18q4nsrmnh" path="res://Floor1/Triggers/scripts/death_trigger.gd" id="1_cruxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63l5n"]
+size = Vector2(479, 144)
+
+[node name="DeathTrigger" type="Area2D" unique_id=1703182186]
+collision_layer = 32
+collision_mask = 6
+script = ExtResource("1_cruxr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766526467]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_63l5n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

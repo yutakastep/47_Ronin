@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_r0708"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_d7rkc"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_xn7ax"]
+[ext_resource type="PackedScene" uid="uid://5cax32njh6np" path="res://Floor1/Triggers/scenes/respawn_trigger.tscn" id="4_d7rkc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mykyk"]
 texture = ExtResource("1_r0708")
@@ -49,7 +50,9 @@ texture = ExtResource("1_r0708")
 6:2/0 = 0
 7:2/0 = 0
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0 = 0
 3:3/0 = 0
 4:3/0 = 0
@@ -57,7 +60,9 @@ texture = ExtResource("1_r0708")
 6:3/0 = 0
 7:3/0 = 0
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:4/0 = 0
@@ -71,7 +76,9 @@ texture = ExtResource("1_r0708")
 7:4/0 = 0
 7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:5/0 = 0
 3:5/0 = 0
 4:5/0 = 0
@@ -116,3 +123,12 @@ start = true
 left = true
 right = true
 section = "midair"
+
+[node name="RespawnTrigger" parent="." unique_id=1917955833 instance=ExtResource("4_d7rkc")]
+position = Vector2(-224, 11)
+
+[node name="RespawnTrigger2" parent="." unique_id=1000726636 instance=ExtResource("4_d7rkc")]
+position = Vector2(-79, 12)
+
+[node name="RespawnTrigger3" parent="." unique_id=520175118 instance=ExtResource("4_d7rkc")]
+position = Vector2(212, 10)

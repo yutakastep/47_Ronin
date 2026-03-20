@@ -1,8 +1,9 @@
-[gd_scene format=4 uid="uid://beggru0mb0lxt"]
+[gd_scene format=4 uid="uid://ccpbmtj10g6ys"]
 
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_dp3ed"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_iwjgb"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_r3upn"]
+[ext_resource type="PackedScene" uid="uid://5cax32njh6np" path="res://Floor1/Triggers/scenes/respawn_trigger.tscn" id="4_iwjgb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tnu62"]
 texture = ExtResource("1_dp3ed")
@@ -116,3 +117,9 @@ end = true
 left = true
 right = true
 section = "midair"
+
+[node name="RespawnTrigger" parent="." unique_id=1917955833 instance=ExtResource("4_iwjgb")]
+position = Vector2(-214, 11)
+
+[node name="RespawnTrigger2" parent="." unique_id=1522402491 instance=ExtResource("4_iwjgb")]
+position = Vector2(100, 16)

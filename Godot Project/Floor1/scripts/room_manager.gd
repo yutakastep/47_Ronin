@@ -19,21 +19,31 @@ var room_w = 480
 var room_h = 240
 var borders = {
 	"sky" : [],
-	"base" : []
+	"base" : [],
+	"sides" : []
 }
+var end_coords : Vector2
+var end_found = false
 
 
 func _ready():
 	rng.randomize()
 	grid_w = rng.randi_range(10, 15)
 	grid_h = rng.randi_range(2, 4)
-	#grid_h = 1
+	#grid_h = 2
+	if grid_h < GameEvents.next_floor_level:
+		grid_h = GameEvents.next_floor_level
+	
 	grid_l = rng.randi_range(3, (grid_w*grid_h)/3)
 
 var rng = RandomNumberGenerator.new()
 var grid : Array[Array] = []
 
 func generate_grid(x, y, section, prior):
+	if Vector2(x, y) == end_coords:
+		end_found = true
+	if section == "midair" and y != 0:
+		return
 	grid[y][x].get_node("room_info").keyword = "Visited"
 	var curr = {
 		"connected" : true,
@@ -55,15 +65,13 @@ func generate_grid(x, y, section, prior):
 	selection = search(selection, "start", grid[y][x].get_node("room_info").start)
 	selection = search(selection, "end", grid[y][x].get_node("room_info").end)
 	##print("Checkpoint 2 ", selection)
-	#if prior["x"] < x:
-		#selection = search(selection, "left", polarity)
-	#elif prior["x"] > x:
-		#selection = search(selection, "right", polarity)
-	#elif prior["y"] > y:
-		#selection = search(selection, "bottom", polarity)
-	#elif prior["y"] < y:
-		#selection = search(selection, "top", polarity)
 	var directions = [[x, y-1, "top", "bottom"], [x+1, y, "right", "left"], [x, y+1, "bottom", "top"], [x-1, y, "left", "right"]]
+	var valid_direction = {
+		"top" : true,
+		"bottom" : true,
+		"left" : true,
+		"right" : true
+	}
 	#Check Adjacent Nodes to see if any additional restrictions on selection need to be made
 	for pairing in directions:
 		#print("Begin Pairing ", selection)
@@ -74,6 +82,7 @@ func generate_grid(x, y, section, prior):
 				#print("Condition: y != 0 and !curr[connected]")
 				#print("Before ", pairing[0], ", ", pairing[1],": ", selection)
 				selection = search(selection, pairing[2], false)
+				valid_direction[pairing[2]] = false
 			elif grid[pairing[1]][pairing[0]].get_node("room_info").keyword == "Visited":
 				print("Condition: pairing has been visited before")
 				print(pairing[2], ", ", polarity)
@@ -83,8 +92,16 @@ func generate_grid(x, y, section, prior):
 			#print("Condition: pairing out of boounds")
 			#print("Before ", pairing[0], ", ", pairing[1],": ", selection)
 			selection = search(selection, pairing[2], false)
+			valid_direction[pairing[2]] = false
 			#print("After ", pairing[0], ", ", pairing[1], ", ", pairing[2], ": ", selection)
 	print("[", x, ", ", y, "] ", selection, grid[y][x].get_node("room_info").left, grid[y][x].get_node("room_info").right, grid[y][x].get_node("room_info").top, grid[y][x].get_node("room_info").bottom, grid[y][x].get_node("room_info").start, grid[y][x].get_node("room_info").end, section)
+	#Make it more likely that terrain generates towards end of floor
+	if !end_found:
+		var flag = rng.randi_range(0, 1)
+		if flag == 0 and x < end_coords.x and valid_direction["right"]:
+			selection = search(selection, "right", true)
+		elif flag == 0 and x > end_coords.x and valid_direction["left"]:
+			selection = search(selection, "left", true)
 	#Assuming a room under the restrictions exists, assign it to grid spot
 	if selection.size() > 0:
 		grid[y][x] = load(selection.pick_random()).instantiate()
@@ -113,11 +130,19 @@ func search(array, attribute, polarity) -> Array:
 			trimmed.push_back(room)
 	return trimmed
 	
-func search_keyword(array, keyword) -> Array:
+func search_keyword(array, keyword, value) -> Array:
 	var trimmed = []
 	for room in array:
 		var temp = load(room).instantiate()
-		if temp.get_node("room_info").get("keyword") == keyword:
+		if temp.get_node("room_info").get(keyword) == value:
+			trimmed.push_back(room)
+	return trimmed
+	
+func search_array(array, attribute, value) -> Array:
+	var trimmed = []
+	for room in array:
+		var temp = load(room).instantiate()
+		if temp.get_node("room_info").get(attribute).has(value):
 			trimmed.push_back(room)
 	return trimmed
 	
@@ -189,6 +214,7 @@ func room_generation() -> Array:
 	while !visited.has(start_end_location[1]):
 		#dprint("Stuck in Loop")
 		start_end_location = default_grid()
+		end_coords = start_end_location[1]
 		generate_grid(start_end_location[0].x, start_end_location[0].y, "earth", {"connected" : true, "x" : start_end_location[0].x, "y" : start_end_location[0].y, "section" : "earth"})
 		spawn_point = Vector2(room_w * start_end_location[0].x, room_h * start_end_location[0].y + 40)
 		grid_check_queue = [start_end_location[0]]
@@ -214,6 +240,41 @@ func room_generation() -> Array:
 	#rooms[rooms.size()-1].position.x = room_w * (rooms.size()-1)
 	#add_child.call_deferred(rooms[rooms.size()-1])
 	#return [Vector2(room_w * (rooms.size()-1)+240, room_h)]
+	var clean_up = sub_layer["midair"]
+	for col in range(0, grid_w):
+		if grid[0][col].get_node("room_info").section == "midair":
+			if grid_h == 2:
+				clean_up = sub_layer["midair"]
+				clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
+				clean_up = search_keyword(clean_up, "keyword", "1_Tall_Bottom")
+				if clean_up.size() > 0:
+					grid[1][col] = load(clean_up.pick_random()).instantiate()
+				else:
+					print("h == 2 Clean Up Failed For ", grid[0][col].scene_file_path)
+			else:
+				for i in range(1, grid_h-2):
+					clean_up = sub_layer["midair"]
+					clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
+					clean_up = search_keyword(clean_up, "keyword", "Filler")
+					if clean_up.size() > 0:
+						grid[i][col] = load(clean_up.pick_random()).instantiate()
+					else:
+						print("Clean Up Failed for ", grid[0][col].scene_file_path)
+				clean_up = sub_layer["midair"]
+				clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
+				clean_up = search_keyword(clean_up, "keyword", "2_Tall_Top")
+				if clean_up.size() > 0:
+					grid[grid_h-2][col] = load(clean_up.pick_random()).instantiate()
+				else:
+					print("Clean Up Failed for ", grid[0][col].scene_file_path)
+				clean_up = sub_layer["midair"]
+				clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
+				clean_up = search_keyword(clean_up, "keyword", "2_Tall_Bottom")
+				if clean_up.size() > 0:
+					print(clean_up)
+					grid[grid_h-1][col] = load(clean_up.pick_random()).instantiate()
+				else:
+					print("Clean Up Failed for ", grid[0][col].scene_file_path)
 	for row in range(0, grid_h):
 		for col in range(0, grid_w):
 			grid[row][col].position = Vector2(room_w * col, room_h * row)
@@ -225,6 +286,16 @@ func room_generation() -> Array:
 		borders["base"].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
 		borders["base"][borders["base"].size()-1].position = Vector2(room_w * borders["sky"].size()-1, grid.size() * room_h)
 		add_child.call_deferred(borders["base"][col])
+	borders["sides"].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_07.tscn").instantiate())
+	borders["sides"][borders["sides"].size()-1].position = Vector2(room_w * -1, 0)
+	add_child.call_deferred(borders["sides"][borders["sides"].size()-1])
+	borders["sides"].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_07.tscn").instantiate())
+	borders["sides"][borders["sides"].size()-1].position = Vector2(room_w * grid_w, 0)
+	add_child.call_deferred(borders["sides"][borders["sides"].size()-1])
+	for row in range(1, grid_h+1):
+		borders["sides"].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_07.tscn").instantiate())
+		borders["sides"][borders["sides"].size()-1].position = Vector2(room_w * -1, row)
+		add_child.call_deferred(borders["sides"][borders["sides"].size()-1])
 	return [Vector2(room_w * (grid[0].size()-1)+240, room_h * (grid.size()-1)), spawn_point]
 
 func load_rooms(path: String) -> Array:
