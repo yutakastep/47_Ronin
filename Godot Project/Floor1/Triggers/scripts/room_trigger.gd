@@ -19,4 +19,4 @@ func _on_body_exit(body: Node2D) -> void:
 func _on_interact():
 	print("Room Trigger Interracted With")
 	GameEvents.interact.disconnect(_on_interact)
-	get_tree().reload_current_scene()
+	print(get_tree().reload_current_scene())

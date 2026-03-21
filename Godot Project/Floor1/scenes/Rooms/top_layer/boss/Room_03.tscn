@@ -1,16 +1,15 @@
-[gd_scene format=4 uid="uid://pl6ct5jr53nt"]
+[gd_scene format=4 uid="uid://brraqrtu086w0"]
 
-[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_4cp5h"]
-[ext_resource type="Texture2D" uid="uid://dtssfnih6hfuw" path="res://Floor1/sprites/tile_sublayer_bg_01.png" id="2_mjwuh"]
-[ext_resource type="Texture2D" uid="uid://cuqrtaiefaiqd" path="res://Floor1/sprites/tile_map_bg_02.png" id="2_rdnov"]
-[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="3_mjwuh"]
-[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="4_4avpn"]
-[ext_resource type="Texture2D" uid="uid://b2x27tus2av2m" path="res://Floor1/sprites/tile_sublayer_00.png" id="5_4avpn"]
-[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="5_6sg3d"]
-[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="6_uokx8"]
+[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_a4brw"]
+[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_4bjc7"]
+[ext_resource type="Texture2D" uid="uid://dtssfnih6hfuw" path="res://Floor1/sprites/tile_sublayer_bg_01.png" id="2_gbefj"]
+[ext_resource type="Texture2D" uid="uid://cuqrtaiefaiqd" path="res://Floor1/sprites/tile_map_bg_02.png" id="3_1ybjc"]
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="5_1ybjc"]
+[ext_resource type="Texture2D" uid="uid://b2x27tus2av2m" path="res://Floor1/sprites/tile_sublayer_00.png" id="5_3iu73"]
+[ext_resource type="Texture2D" uid="uid://cxxvfb4tveupk" path="res://Floor1/sprites/tile_boss_00.png" id="9_0rooe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
-texture = ExtResource("1_4cp5h")
+texture = ExtResource("1_a4brw")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -91,7 +90,7 @@ texture = ExtResource("1_4cp5h")
 7:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjwuh"]
-texture = ExtResource("2_mjwuh")
+texture = ExtResource("2_gbefj")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
@@ -103,14 +102,14 @@ sources/0 = SubResource("TileSetAtlasSource_ikvyn")
 sources/1 = SubResource("TileSetAtlasSource_mjwuh")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6sg3d"]
-texture = ExtResource("2_mjwuh")
+texture = ExtResource("2_gbefj")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v78rr"]
-texture = ExtResource("2_rdnov")
+texture = ExtResource("3_1ybjc")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
@@ -145,7 +144,7 @@ texture = ExtResource("2_rdnov")
 3:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8jfm"]
-texture = ExtResource("3_mjwuh")
+texture = ExtResource("2_4bjc7")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -160,7 +159,7 @@ texture = ExtResource("3_mjwuh")
 5:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uokx8"]
-texture = ExtResource("5_4avpn")
+texture = ExtResource("5_3iu73")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_0/polygon_0/one_way = true
@@ -194,8 +193,64 @@ sources/2 = SubResource("TileSetAtlasSource_q8jfm")
 sources/0 = SubResource("TileSetAtlasSource_6sg3d")
 sources/4 = SubResource("TileSetAtlasSource_uokx8")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcgul"]
-size = Vector2(478, 255)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4u22y"]
+texture = ExtResource("2_4bjc7")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h7503"]
+texture = ExtResource("9_0rooe")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fuu3d"]
+sources/0 = SubResource("TileSetAtlasSource_4u22y")
+sources/1 = SubResource("TileSetAtlasSource_h7503")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_v78rr"]
 a = Vector2(320, 0)
@@ -228,19 +283,24 @@ visibility_layer = 2
 tile_map_data = PackedByteArray("AADx//7/AQACAAQAAADx////AQACAAUAAADx/wAAAQACAAYAAADx/wEAAQACAAcAAADx/wIAAQACAAgAAADx/wMAAQACAAkAAADy//7/AQADAAQAAADy////AQADAAUAAADy/wAAAQADAAYAAADy/wEAAQADAAcAAADy/wIAAQADAAgAAADy/wMAAQADAAkAAAD0//r/AQACAAQAAAD0//v/AQACAAUAAAD0//z/AQACAAYAAAD0//3/AQAAAAMAAAD0//7/AQAAAAQAAAD0////AQAAAAUAAAD0/wAAAQAAAAYAAAD0/wEAAQAAAAcAAAD0/wIAAQAAAAgAAAD0/wMAAQAAAAkAAAD1//r/AQADAAQAAAD1//v/AQADAAUAAAD1//z/AQADAAYAAAD1//3/AQABAAMAAAD1//7/AQABAAQAAAD1////AQABAAUAAAD1/wAAAQABAAYAAAD1/wEAAQABAAcAAAD1/wIAAQABAAgAAAD1/wMAAQABAAkAAAD4//v/AQACAAQAAAD4//z/AQACAAUAAAD4//3/AQACAAYAAAD4//7/AQACAAcAAAD4////AQACAAgAAAD4/wAAAQACAAcAAAD4/wEAAQAAAAcAAAD4/wIAAQAAAAgAAAD4/wMAAQACAAkAAAD5//v/AQADAAQAAAD5//z/AQADAAUAAAD5//3/AQADAAYAAAD5//7/AQADAAcAAAD5////AQADAAgAAAD5/wAAAQADAAcAAAD5/wEAAQABAAcAAAD5/wIAAQABAAgAAAD5/wMAAQADAAkAAAA=")
 tile_set = SubResource("TileSet_47ang")
 
-[node name="EnemyTrigger" type="Area2D" parent="." unique_id=1685843166]
-collision_mask = 2
-script = ExtResource("4_4avpn")
-enemy_scene = ExtResource("5_6sg3d")
+[node name="Background5" type="TileMapLayer" parent="." unique_id=1801618576]
+modulate = Color(0.86036915, 0.8603692, 0.8603692, 0.8666667)
+visibility_layer = 2
+position = Vector2(0, 4)
+scale = Vector2(0.75, 0.75)
+tile_map_data = PackedByteArray("AAAOAAEAAQAFAAEAAAAOAAIAAQAFAAIAAAAOAAMAAQAFAAMAAAAOAAQAAQAFAAQAAAAPAAEAAQAGAAEAAAAPAAIAAQAGAAIAAAAPAAMAAQAGAAMAAAAPAAQAAQAGAAQAAAAQAAEAAQAHAAEAAAAQAAIAAQAHAAIAAAAQAAMAAQAHAAMAAAAQAAQAAQAHAAQAAAARAAEAAQAIAAEAAAARAAIAAQAIAAIAAAARAAMAAQAIAAMAAAARAAQAAQAIAAQAAAD6/wAAAQAAAAAAAAD6/wEAAQAAAAEAAAD6/wIAAQAAAAIAAAD6/wMAAQAAAAMAAAD7/wAAAQABAAAAAAD7/wEAAQABAAEAAAD7/wIAAQABAAIAAAD7/wMAAQABAAMAAAD7/wQAAQABAAQAAAA=")
+tile_set = SubResource("TileSet_fuu3d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTrigger" unique_id=854680512]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_mcgul")
+[node name="Background6" type="TileMapLayer" parent="." unique_id=27980058]
+modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
+visibility_layer = 2
+z_index = 1
+position = Vector2(0, 4)
+scale = Vector2(0.75, 0.75)
+tile_map_data = PackedByteArray("AAAQAAEAAQAFAAEAAAAQAAIAAQAFAAIAAAAQAAMAAQAFAAMAAAAQAAQAAQAFAAQAAAARAAEAAQAGAAEAAAARAAIAAQAGAAIAAAARAAMAAQAGAAMAAAARAAQAAQAGAAQAAAASAAEAAQAHAAEAAAASAAIAAQAHAAIAAAASAAMAAQAHAAMAAAASAAQAAQAHAAQAAAATAAEAAQAIAAEAAAATAAIAAQAIAAIAAAATAAMAAQAIAAMAAAATAAQAAQAIAAQAAAAMAAEAAQAFAAEAAAAMAAIAAQAFAAIAAAAMAAMAAQAFAAMAAAAMAAQAAQAFAAQAAAANAAEAAQAGAAEAAAANAAIAAQAGAAIAAAANAAMAAQAGAAMAAAANAAQAAQAGAAQAAAAOAAEAAQAHAAEAAAAOAAIAAQAHAAIAAAAOAAMAAQAHAAMAAAAOAAQAAQAHAAQAAAAPAAEAAQAIAAEAAAAPAAIAAQAIAAIAAAAPAAMAAQAIAAMAAAAPAAQAAQAIAAQAAAA=")
+tile_set = SubResource("TileSet_fuu3d")
 
-[node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=1889600459]
-position = Vector2(-50, 37)
-
-[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("6_uokx8")]
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("5_1ybjc")]
 right = true
 bottom = true
 section = "earth"
@@ -250,6 +310,3 @@ section = "earth"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=669833772]
 position = Vector2(-402, -119)
 shape = SubResource("SegmentShape2D_v78rr")
-
-[connection signal="body_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="EnemyTrigger" to="EnemyTrigger" method="_on_body_shape_entered"]

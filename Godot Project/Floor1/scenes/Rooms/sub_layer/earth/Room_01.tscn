@@ -228,7 +228,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nbujr")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=2104374696]
-position = Vector2(0, 43)
+position = Vector2(130, 74)
 
 [node name="room_info" parent="." unique_id=838746514 instance=ExtResource("9_i7504")]
 left = true

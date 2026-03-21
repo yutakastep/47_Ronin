@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bmauogpgl6ocw"]
+
+[ext_resource type="Texture2D" uid="uid://dgtsqe0yw3jpf" path="res://misc/sprites/animated_campfire.png" id="1_wkgry"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qomkk"]
+atlas = ExtResource("1_wkgry")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lshiw"]
+atlas = ExtResource("1_wkgry")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvy1u"]
+atlas = ExtResource("1_wkgry")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xsqov"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_qomkk")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_lshiw")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_mvy1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Campfire" type="Node2D" unique_id=11588240]
+modulate = Color(0.88235295, 0.88235295, 0.88235295, 0.9411765)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1010591502]
+sprite_frames = SubResource("SpriteFrames_xsqov")
+frame_progress = 0.07332264

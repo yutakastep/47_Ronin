@@ -8,14 +8,14 @@ var ronin_spawn = Vector2(0, 15)
 var enemy_spawn = Vector2(300, 170)
 
 var enemies = []
-var boss_floor_number = 5
+var boss_floor_number = 7
 
 var current_ronin : CharacterBody2D
 
 func _ready():
 	GameEvents.floor_count = GameEvents.floor_count + 1
 	if GameEvents.floor_count == boss_floor_number:
-		pass
+		dimensions = get_node("BossManager").room_generation()
 	elif GameEvents.floor_count % 2 == 0:
 		dimensions = get_node("SpecialManager").room_generation()
 	else:
@@ -35,10 +35,11 @@ func spawn_ronin():
 	camera.offset = Vector2(0, -20)
 	camera.limit_left = -240
 	camera.limit_right = dimensions[0].x
+	camera.zoom = Vector2(3.5, 3.5)
 	camera.make_current()
 	#print("Ronin Spawn? ", dimensions[1])
 	current_ronin.speed = 200
-	current_ronin.jump_speed = -275
+	current_ronin.jump_speed = -225
 	current_ronin.add_child(camera)
 
 func load_ronin(path: String) -> Array:

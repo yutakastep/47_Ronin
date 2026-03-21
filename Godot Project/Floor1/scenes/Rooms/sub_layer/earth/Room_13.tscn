@@ -230,6 +230,7 @@ shape = SubResource("RectangleShape2D_nbujr")
 position = Vector2(0, 43)
 
 [node name="room_info" parent="." unique_id=838746514 instance=ExtResource("9_gvvrk")]
+position = Vector2(-116, 72)
 left = true
 right = true
 top = true

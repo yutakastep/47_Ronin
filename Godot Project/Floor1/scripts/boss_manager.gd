@@ -27,47 +27,34 @@ var grid : Array[Array] = []
 
 func _ready():
 	rng.randomize()
-	grid_w = 3
+	grid_w = 5
 	grid_h = 2
 	
 func room_generation() -> Array:
 	var start_vertical = min(GameEvents.next_floor_level, 1)
-	var selection = []
 	if start_vertical == 0:
 		grid = [[], []]
 		grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_S02.tscn").instantiate())
 		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		selection = top_layer["special"]
-		var attributes = [["left", true], ["right", true], ["top", false], ["bottom", false]]
-		for pair in attributes:
-			selection = search(selection, pair[0], pair[1])
-		grid[0].push_back(load(selection.pick_random()).instantiate())
+		grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/boss/Room_02.tscn").instantiate())
 		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_E02.tscn").instantiate())
-		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
+		
 	else:
 		grid = [[], []]
-		grid[0].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
+		grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_07.tscn").instantiate())
 		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_S05.tscn").instantiate())
-		selection = sub_layer["special"]
-		var attributes = [["left", true], ["right", true], ["top", false], ["bottom", false]]
-		for pair in attributes:
-			selection = search(selection, pair[0], pair[1])
-		grid[0].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		grid[1].push_back(load(selection.pick_random()).instantiate())
-		grid[0].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_E06.tscn").instantiate())
+		grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/boss/Room_03.tscn").instantiate())
+		grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_01.tscn").instantiate())
+	grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/boss/Room_01.tscn").instantiate())
+	grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
+	grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/boss/Room_00.tscn").instantiate())
+	grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
+	grid[0].push_back(load("res://Floor1/scenes/Rooms/top_layer/boss/Room_E00.tscn").instantiate())
+	grid[1].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
 	for row in range(0, grid_h):
 		for col in range(0, grid_w):
 			grid[row][col].position = Vector2(room_w * col, room_h * row)
 			add_child.call_deferred(grid[row][col])
-	for col in range(0, grid_w):
-		borders["sky"].push_back(load("res://Floor1/scenes/Rooms/Room_Sky.tscn").instantiate())
-		borders["sky"][borders["sky"].size()-1].position = Vector2(room_w * (borders["sky"].size()-1), -1 * room_h)
-		add_child.call_deferred(borders["sky"][col])
-		borders["base"].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		borders["base"][borders["base"].size()-1].position = Vector2(room_w * (borders["sky"].size()-1), grid.size() * room_h)
-		add_child.call_deferred(borders["base"][col])
 	return [Vector2(room_w * (grid[0].size()-1)+240, room_h * (grid.size()-1)), Vector2(0, start_vertical * room_h + 40)]
 
 

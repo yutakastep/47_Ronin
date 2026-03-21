@@ -229,6 +229,7 @@ shape = SubResource("RectangleShape2D_nbujr")
 position = Vector2(0, 43)
 
 [node name="room_info" parent="." unique_id=838746514 instance=ExtResource("9_66j2h")]
+position = Vector2(69, 74)
 right = true
 bottom = true
 section = "earth"

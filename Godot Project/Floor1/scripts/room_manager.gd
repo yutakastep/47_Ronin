@@ -24,9 +24,12 @@ var borders = {
 }
 var end_coords : Vector2
 var end_found = false
+var end_invalid = false
 
+var room_cache = {}
 
 func _ready():
+	cache_all_rooms()
 	rng.randomize()
 	grid_w = rng.randi_range(10, 15)
 	grid_h = rng.randi_range(2, 4)
@@ -38,6 +41,28 @@ func _ready():
 
 var rng = RandomNumberGenerator.new()
 var grid : Array[Array] = []
+
+func cache_all_rooms():
+	var all_paths = []
+	for key in top_layer: all_paths.append_array(top_layer[key])
+	for key in sub_layer: all_paths.append_array(sub_layer[key])
+	for path in all_paths:
+		var room_node = load(path).instantiate()
+		var info = room_node.get_node("room_info")
+		room_cache[path] = {
+			"left": info.left,
+			"right": info.right,
+			"top": info.top,
+			"bottom": info.bottom,
+			"start": info.start,
+			"end": info.end,
+			"section": info.section,
+			"keyword": info.keyword,
+			"x": info.x,
+			"y": info.y,
+			"associated_room": info.associated_room
+		}
+		room_node.free()
 
 func generate_grid(x, y, section, prior):
 	if Vector2(x, y) == end_coords:
@@ -53,10 +78,10 @@ func generate_grid(x, y, section, prior):
 	}
 	var selection = []
 	if y == 0:
-		print("section=", section)
+		#print("section=", section)
 		selection = top_layer[section]
 	else:
-		print("section=",section)
+		#print("section=",section)
 		selection = sub_layer[section]
 	#print("Checkpoint 1 ", selection)
 	var polarity = true
@@ -84,9 +109,9 @@ func generate_grid(x, y, section, prior):
 				selection = search(selection, pairing[2], false)
 				valid_direction[pairing[2]] = false
 			elif grid[pairing[1]][pairing[0]].get_node("room_info").keyword == "Visited":
-				print("Condition: pairing has been visited before")
-				print(pairing[2], ", ", polarity)
-				print("Before ", pairing[0], ", ", pairing[1],": ", selection)
+				#print("Condition: pairing has been visited before")
+				#print(pairing[2], ", ", polarity)
+				#print("Before ", pairing[0], ", ", pairing[1],": ", selection)
 				selection = search(selection, pairing[2], polarity)
 		else:
 			#print("Condition: pairing out of boounds")
@@ -108,6 +133,9 @@ func generate_grid(x, y, section, prior):
 		grid[y][x].get_node("room_info").keyword = "Visited"
 		grid[y][x].get_node("room_info").x = x
 		grid[y][x].get_node("room_info").y = y
+	elif section == "earth" and grid[y][x].get_node("room_info").end:
+		end_invalid = true
+		
 	#Continue Traversing grid
 	directions.shuffle()
 	for pairing in directions:
@@ -124,26 +152,23 @@ func generate_grid(x, y, section, prior):
 	
 func search(array, attribute, polarity) -> Array:
 	var trimmed = []
-	for room in array:
-		var temp = load(room).instantiate()
-		if temp.get_node("room_info").get(attribute) == polarity:
-			trimmed.push_back(room)
+	for path in array:
+		if room_cache[path][attribute] == polarity:
+			trimmed.push_back(path)
 	return trimmed
 	
 func search_keyword(array, keyword, value) -> Array:
 	var trimmed = []
-	for room in array:
-		var temp = load(room).instantiate()
-		if temp.get_node("room_info").get(keyword) == value:
-			trimmed.push_back(room)
+	for path in array:
+		if room_cache[path][keyword] == value:
+			trimmed.push_back(path)
 	return trimmed
 	
 func search_array(array, attribute, value) -> Array:
 	var trimmed = []
-	for room in array:
-		var temp = load(room).instantiate()
-		if temp.get_node("room_info").get(attribute).has(value):
-			trimmed.push_back(room)
+	for path in array:
+		if room_cache[path][attribute].has(value):
+			trimmed.push_back(path)
 	return trimmed
 	
 func default_grid() -> Array:
@@ -182,7 +207,7 @@ func default_grid() -> Array:
 			grid[row][grid_w-2].get_node("room_info").end = true
 	for row in range(0, grid_h):
 		grid[row][grid_w-1].get_node("room_info").section = "earth"
-	var start_vertical = GameEvents.next_floor_level
+	var start_vertical = min(GameEvents.next_floor_level, 1)
 	var start_horizontal = rng.randi_range(0, grid_w-1)
 	#var counter = 0
 	while(grid[start_vertical][start_horizontal].get_node("room_info").section != "earth"):
@@ -211,10 +236,11 @@ func room_generation() -> Array:
 	var spawn_point = Vector2(0, 0)
 	var grid_check_queue = []
 	var visited = []
-	while !visited.has(start_end_location[1]):
+	while !visited.has(start_end_location[1]) or end_invalid:
 		#dprint("Stuck in Loop")
 		start_end_location = default_grid()
 		end_coords = start_end_location[1]
+		end_invalid = false
 		generate_grid(start_end_location[0].x, start_end_location[0].y, "earth", {"connected" : true, "x" : start_end_location[0].x, "y" : start_end_location[0].y, "section" : "earth"})
 		spawn_point = Vector2(room_w * start_end_location[0].x, room_h * start_end_location[0].y + 40)
 		grid_check_queue = [start_end_location[0]]
@@ -229,6 +255,7 @@ func room_generation() -> Array:
 				if pairing[0] >= 0 and pairing[1] >= 0 and !visited.has(Vector2(pairing[0], pairing[1])) and grid[y][x].get_node("room_info").get(pairing[2]):
 					visited.push_back(Vector2(pairing[0], pairing[1]))
 					grid_check_queue.push_back(Vector2(pairing[0], pairing[1]))
+	GameEvents.next_floor_level = end_coords.y
 	
 	#rooms.push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_Start.tscn").instantiate())
 	#add_child.call_deferred(rooms[0])
@@ -281,10 +308,10 @@ func room_generation() -> Array:
 			add_child.call_deferred(grid[row][col])
 	for col in range(0, grid_w):
 		borders["sky"].push_back(load("res://Floor1/scenes/Rooms/Room_Sky.tscn").instantiate())
-		borders["sky"][borders["sky"].size()-1].position = Vector2(room_w * borders["sky"].size()-1, -1 * room_h)
+		borders["sky"][borders["sky"].size()-1].position = Vector2(room_w * (borders["sky"].size()-1), -1 * room_h)
 		add_child.call_deferred(borders["sky"][col])
 		borders["base"].push_back(load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate())
-		borders["base"][borders["base"].size()-1].position = Vector2(room_w * borders["sky"].size()-1, grid.size() * room_h)
+		borders["base"][borders["base"].size()-1].position = Vector2(room_w * (borders["sky"].size()-1), grid.size() * room_h)
 		add_child.call_deferred(borders["base"][col])
 	borders["sides"].push_back(load("res://Floor1/scenes/Rooms/top_layer/earth/Room_07.tscn").instantiate())
 	borders["sides"][borders["sides"].size()-1].position = Vector2(room_w * -1, 0)

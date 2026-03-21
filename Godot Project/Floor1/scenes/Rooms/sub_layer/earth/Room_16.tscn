@@ -1,17 +1,17 @@
 [gd_scene format=4 uid="uid://drx0aweuqyikh"]
 
-[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_v1ncp"]
-[ext_resource type="Texture2D" uid="uid://dtssfnih6hfuw" path="res://Floor1/sprites/tile_sublayer_bg_01.png" id="2_uqcoh"]
-[ext_resource type="Texture2D" uid="uid://c6afx4i5gvcep" path="res://Floor1/sprites/tile_sublayer_bg_02.png" id="3_tjy8n"]
-[ext_resource type="Texture2D" uid="uid://bt7kruordw1qw" path="res://Floor1/sprites/tile_sublayer_bg_03.png" id="4_ekqbn"]
-[ext_resource type="Texture2D" uid="uid://b2x27tus2av2m" path="res://Floor1/sprites/tile_sublayer_00.png" id="5_26low"]
-[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="6_nibxf"]
-[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="7_trejc"]
-[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="8_s6e1o"]
-[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="9_cg2o1"]
+[ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_ut72o"]
+[ext_resource type="Texture2D" uid="uid://dtssfnih6hfuw" path="res://Floor1/sprites/tile_sublayer_bg_01.png" id="2_hymmi"]
+[ext_resource type="Texture2D" uid="uid://c6afx4i5gvcep" path="res://Floor1/sprites/tile_sublayer_bg_02.png" id="3_olffk"]
+[ext_resource type="Texture2D" uid="uid://bt7kruordw1qw" path="res://Floor1/sprites/tile_sublayer_bg_03.png" id="4_x2ie7"]
+[ext_resource type="Texture2D" uid="uid://b2x27tus2av2m" path="res://Floor1/sprites/tile_sublayer_00.png" id="5_u8wa3"]
+[ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="6_3udlt"]
+[ext_resource type="Script" uid="uid://drer8uaucw822" path="res://Floor1/Triggers/scripts/enemy_trigger.gd" id="7_nqeub"]
+[ext_resource type="PackedScene" uid="uid://cqr1uvn6wx265" path="res://Floor1/Enemies/scenes/enemy_samurai.tscn" id="8_l46h6"]
+[ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="9_3ybb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
-texture = ExtResource("1_v1ncp")
+texture = ExtResource("1_ut72o")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -98,28 +98,28 @@ texture = ExtResource("1_v1ncp")
 7:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q7l2a"]
-texture = ExtResource("2_uqcoh")
+texture = ExtResource("2_hymmi")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdpfx"]
-texture = ExtResource("3_tjy8n")
+texture = ExtResource("3_olffk")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vclc"]
-texture = ExtResource("4_ekqbn")
+texture = ExtResource("4_x2ie7")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3uw8"]
-texture = ExtResource("5_26low")
+texture = ExtResource("5_u8wa3")
 0:0/0 = 0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_1/polygon_0/one_way = true
@@ -156,7 +156,7 @@ sources/3 = SubResource("TileSetAtlasSource_5vclc")
 sources/4 = SubResource("TileSetAtlasSource_s3uw8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk36c"]
-texture = ExtResource("6_nibxf")
+texture = ExtResource("6_3udlt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -171,7 +171,7 @@ texture = ExtResource("6_nibxf")
 5:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5idj2"]
-texture = ExtResource("5_26low")
+texture = ExtResource("5_u8wa3")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_0/polygon_0/one_way = true
@@ -218,17 +218,17 @@ tile_set = SubResource("TileSet_dsswo")
 
 [node name="EnemyTrigger" type="Area2D" parent="." unique_id=1897613037]
 collision_mask = 2
-script = ExtResource("7_trejc")
-enemy_scene = ExtResource("8_s6e1o")
+script = ExtResource("7_nqeub")
+enemy_scene = ExtResource("8_l46h6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTrigger" unique_id=666080978]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nbujr")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyTrigger" unique_id=2104374696]
-position = Vector2(0, 43)
+position = Vector2(-1, 70)
 
-[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("9_cg2o1")]
+[node name="room_info" parent="." unique_id=838746514 instance=ExtResource("9_3ybb1")]
 left = true
 right = true
 section = "earth"

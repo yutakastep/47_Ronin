@@ -17,6 +17,8 @@ var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+var jump_cap = 2
+var curr_jump = 0
 var knocked_back = false
 
 var health = 3
@@ -90,9 +92,12 @@ func _physics_process(delta):
 	elif !jumping && !sheathing:
 		velocity.x = 0
 	move_and_slide()
+	if is_on_floor():
+		curr_jump = 0
 
-	# Only allow jumping when on the ground
-	if Input.is_action_just_pressed("space") and is_on_floor():
+	# Only allow jumping up to cap
+	if Input.is_action_just_pressed("space") and curr_jump < jump_cap:
+		curr_jump = curr_jump + 1
 		velocity.y = jump_speed
 
 func attack(attack_indx, attack) -> void:
