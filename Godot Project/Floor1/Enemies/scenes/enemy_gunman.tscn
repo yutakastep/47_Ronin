@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b882p6uv0oo46"]
 
-[ext_resource type="Script" uid="uid://cybk28nk3bo37" path="res://Floor1/Enemies/scripts/enemy_samurai.gd" id="1_ds1w7"]
+[ext_resource type="Script" uid="uid://u22tjw0bu5ix" path="res://Floor1/Enemies/scripts/enemy_gunman.gd" id="1_7bffi"]
 [ext_resource type="Texture2D" uid="uid://xy6amuexubki" path="res://Floor1/Enemies/sprites/gunman/shoot.png" id="2_7bffi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
@@ -101,7 +101,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_frf52")
 }],
 "loop": false,
-"name": &"shooting",
+"name": &"shoot",
 "speed": 10.0
 }]
 
@@ -146,20 +146,20 @@ _data = {
 [node name="EnemyGunman" type="CharacterBody2D" unique_id=10856245]
 light_mask = 9
 visibility_layer = 5
+position = Vector2(0, -2)
 collision_layer = 4
 collision_mask = 27
-script = ExtResource("1_ds1w7")
+script = ExtResource("1_7bffi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yi7cw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451966867]
 material = SubResource("ShaderMaterial_nbrsp")
+position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_5afn6")
-animation = &"shooting"
-frame = 9
-frame_progress = 1.0
+animation = &"shoot"
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1028163978]
 
@@ -168,12 +168,12 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitDetection" unique_id=1945399430]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yi7cw")
 
 [node name="Flash" type="AnimationPlayer" parent="." unique_id=1888266970]
 libraries/ = SubResource("AnimationLibrary_5vyum")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]

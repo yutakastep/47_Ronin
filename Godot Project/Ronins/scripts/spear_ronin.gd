@@ -18,6 +18,7 @@ var jumping = false
 var jump_cap = 2
 var curr_jump = 0
 var knocked_back = false 
+var was_on_floor = true
 
 var health = 3
 
@@ -55,13 +56,25 @@ func _process(delta: float) -> void:
 					set_hitbox($Hitboxes/AttackThree, $AnimatedSprite2D.frame in [2, 3, 4])
 				4:
 					set_hitbox($Hitboxes/AttackUp, $AnimatedSprite2D.frame in [1, 2, 3])
-		elif !jumping and !knocked_back and attack_index == 0:
+		elif jumping:
+			print(is_on_floor() and !was_on_floor)
+			if velocity.y >= -200:
+				$AnimatedSprite2D.frame = 0
+			if velocity.y >= -90:
+				$AnimatedSprite2D.frame = 1
+			if velocity.y >= 90:
+				$AnimatedSprite2D.frame = 2
+			if is_on_floor() and !was_on_floor: 
+				curr_jump = 0
+				jumping = false
+		elif !knocked_back and attack_index == 0:
 			if is_on_floor() and Input.is_action_just_pressed("ui_down"):
 				set_collision_mask_value(5, false)
 				await get_tree().create_timer(0.3).timeout
 				set_collision_mask_value(5, true)
 			if Input.is_action_just_pressed("space"):
-				$AnimatedSprite2D.play("jump")
+				$AnimatedSprite2D.animation = "jump"
+				$AnimatedSprite2D.frame = 0
 				jumping = true
 			elif velocity.x < 0:
 				$AnimatedSprite2D.flip_h = true
@@ -73,7 +86,7 @@ func _process(delta: float) -> void:
 				$Hitboxes.scale.x = 1
 			else:
 				$AnimatedSprite2D.play("breathing")
-	
+	was_on_floor = is_on_floor()
 	
 
 func _physics_process(delta):
@@ -97,8 +110,6 @@ func _physics_process(delta):
 		velocity.x = 0
 		
 	move_and_slide()
-	if is_on_floor():
-		curr_jump = 0
 
 	# Only allow jumping up to cap
 	if Input.is_action_just_pressed("space") and curr_jump < jump_cap:
@@ -131,8 +142,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif attack_index == 3:
 		sheath()
 	elif attack_index == 4:
-		if jumping:
-			jumping = false
 		attack_index = 0
 		timedout = false
 		attacking = false
@@ -144,8 +153,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			return
 		$ComboTimer.start(.2)
 		attacking = false
-	elif jumping:
-		jumping = false
 
 func _on_combo_timer_timeout() -> void:
 	sheath()

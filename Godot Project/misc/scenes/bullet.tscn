@@ -7,16 +7,16 @@
 size = Vector2(6, 2)
 
 [node name="Bullet" type="CharacterBody2D" unique_id=1926306809]
-collision_layer = 0
-collision_mask = 5
+collision_layer = 68
+collision_mask = 3
 script = ExtResource("1_s481u")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=129826753]
 texture = ExtResource("2_s481u")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=652647657]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 64
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=120390716]
 shape = SubResource("RectangleShape2D_66qat")

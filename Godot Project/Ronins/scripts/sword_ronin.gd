@@ -55,14 +55,24 @@ func _process(delta: float) -> void:
 					set_hitbox($Hitboxes/AttackThree, $AnimatedSprite2D.frame in [2, 3, 4])
 				4:
 					set_hitbox($Hitboxes/AttackUp, $AnimatedSprite2D.frame in [5, 6, 7])
-					
-		elif !jumping and !knocked_back and attack_index == 0:
+		elif jumping:
+			if velocity.y >= -200:
+				$AnimatedSprite2D.frame = 0
+			if velocity.y >= -90:
+				$AnimatedSprite2D.frame = 1
+			if velocity.y >= 90:
+				$AnimatedSprite2D.frame = 2
+			if velocity.y == 0 and is_on_floor():
+				curr_jump = 0
+				jumping = false
+		elif !knocked_back and attack_index == 0:
 			if is_on_floor() and Input.is_action_just_pressed("ui_down"):
 				set_collision_mask_value(5, false)
 				await get_tree().create_timer(0.3).timeout
 				set_collision_mask_value(5, true)
 			if Input.is_action_just_pressed("space"):
-				$AnimatedSprite2D.play("jump")
+				$AnimatedSprite2D.animation = "jump"
+				$AnimatedSprite2D.frame = 0
 				jumping = true
 			elif velocity.x < 0:
 				$AnimatedSprite2D.flip_h = true
@@ -98,8 +108,6 @@ func _physics_process(delta):
 	elif !jumping && !sheathing:
 		velocity.x = 0
 	move_and_slide()
-	if is_on_floor():
-		curr_jump = 0
 
 	# Only allow jumping up to cap
 	if Input.is_action_just_pressed("space") and curr_jump < jump_cap:
@@ -132,8 +140,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif attack_index == 3:
 		sheath()
 	elif attack_index == 4:
-		if jumping:
-			jumping = false
 		sheath()
 	elif attack_index > 0:
 		if jumping:

@@ -435,7 +435,9 @@ script = ExtResource("1_mwkte")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 material = SubResource("ShaderMaterial_um34y")
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"attack_one"
+animation = &"jump"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(0, 1)

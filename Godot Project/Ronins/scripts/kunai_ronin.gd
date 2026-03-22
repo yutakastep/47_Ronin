@@ -52,13 +52,24 @@ func _process(delta: float) -> void:
 					if !attacking:
 						attack(3, "attack_three")
 						parent.throw(false, $AnimatedSprite2D.flip_h, 3)
+		elif jumping and !attacking:
+			if velocity.y >= -200:
+				$AnimatedSprite2D.frame = 0
+			if velocity.y >= -90:
+				$AnimatedSprite2D.frame = 1
+			if velocity.y >= 90:
+				$AnimatedSprite2D.frame = 2
+			if velocity.y == 0 and is_on_floor():
+				curr_jump = 0
+				jumping = false
 		elif !attacking and !jumping and !knocked_back and attack_index == 0:
 			if is_on_floor() and Input.is_action_just_pressed("ui_down"):
 				set_collision_mask_value(5, false)
 				await get_tree().create_timer(0.3).timeout
 				set_collision_mask_value(5, true)
 			if Input.is_action_just_pressed("space"):
-				$AnimatedSprite2D.play("jump")
+				$AnimatedSprite2D.animation = "jump"
+				$AnimatedSprite2D.frame = 0
 				jumping = true
 			elif velocity.x < 0:
 				$AnimatedSprite2D.flip_h = true
@@ -91,9 +102,8 @@ func _physics_process(delta):
 		velocity.x = Input.get_axis("ui_left", "ui_right") * speed
 	elif !jumping && !sheathing:
 		velocity.x = 0
+		
 	move_and_slide()
-	if is_on_floor():
-		curr_jump = 0
 
 	# Only allow jumping up to cap
 	if Input.is_action_just_pressed("space") and curr_jump < jump_cap:
@@ -128,8 +138,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif attack_index == 3:
 		sheath()
 	elif attack_index == 4:
-		if jumping:
-			jumping = false
 		sheath()
 	elif attack_index > 0:
 		if jumping:
@@ -139,8 +147,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			return
 		$ComboTimer.start(.2)
 		attacking = false
-	elif jumping:
-		jumping = false
 
 func _on_combo_timer_timeout() -> void:
 	$ComboTimer.stop()
@@ -158,8 +164,6 @@ func increase_speed(spd_inc_amount):
 	print("increase speed by: ", spd_inc_amount)
 	
 	
-
-
 func _on_hit_detection_area_entered(area: Area2D) -> void:
 	if area.get_parent() is CharacterBody2D:
 		$Flash.play("hit")
