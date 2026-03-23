@@ -18,7 +18,7 @@ func set_title_screen():
 
 func start_game():
 	# TODO: Insert code here to load the first floor or homebase
-	
+	# TODO: Project settings > application > run > main scene > set to title scene
 	pass
 
 func close_title_screen():
