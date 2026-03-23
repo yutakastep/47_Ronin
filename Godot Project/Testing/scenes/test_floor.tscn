@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://da2wsfkwg1gh2"]
 
 [ext_resource type="Script" uid="uid://bwirt6ql1hxm6" path="res://Testing/scripts/test_floor.gd" id="1_w5j3k"]
-[ext_resource type="PackedScene" uid="uid://degaho87b4dqm" path="res://Testing/scenes/test_pickup.tscn" id="4_pn1xt"]
+[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/turnip.tres" id="5_261ir"]
+[ext_resource type="Resource" uid="uid://8kj34h77uwg4" path="res://Items/sake.tres" id="5_w5j3k"]
 [ext_resource type="PackedScene" uid="uid://b1bo5mtxrcbrh" path="res://Items/item_pickup/ItemPickup.tscn" id="7_sqffn"]
 [ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/chicken.tres" id="8_pn1xt"]
 
@@ -37,9 +38,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" unique_id=174746123]
 shape = SubResource("SegmentShape2D_vrwqx")
 
-[node name="test pickup" parent="." unique_id=815839702 instance=ExtResource("4_pn1xt")]
-position = Vector2(216, 164)
-
 [node name="ItemPickup" parent="." unique_id=1427862309 instance=ExtResource("7_sqffn")]
 position = Vector2(83, 167)
 item_data = ExtResource("8_pn1xt")
+
+[node name="ItemPickup2" parent="." unique_id=1158385606 instance=ExtResource("7_sqffn")]
+position = Vector2(134, 165)
+item_data = ExtResource("5_261ir")
+
+[node name="ItemPickup3" parent="." unique_id=528487337 instance=ExtResource("7_sqffn")]
+position = Vector2(195, 166)
+item_data = ExtResource("5_w5j3k")

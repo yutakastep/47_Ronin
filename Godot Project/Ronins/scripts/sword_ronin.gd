@@ -1,8 +1,5 @@
-class_name SwordRonin extends CharacterBody2D
+class_name SwordRonin extends BaseRonin
 
-@export var speed = 60
-@export var jump_speed = -200
-@export var gravity = 500
 var combo_count: int = 0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var hitboxes = [$Hitboxes/AttackOne, $Hitboxes/AttackTwo, $Hitboxes/AttackThree, $Hitboxes/AttackUp] 
@@ -167,11 +164,3 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 		if health <= 0:
 			queue_free()
 		
-# function to increase speed for item pickups
-# might need a global item pickup manager for all the ronin
-# if we're being lazy honestly we could just copy paste item effects for all the ronin
-# unless items would have different effects for different ronin
-func increase_speed(spd_inc_amount):
-	print("hit")
-	speed += spd_inc_amount
-	print("increase speed by: ", spd_inc_amount)

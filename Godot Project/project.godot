@@ -25,8 +25,8 @@ GameEvents="*uid://o1x0pnwxuvjr"
 
 [display]
 
-window/size/viewport_width=360
-window/size/viewport_height=180
+window/size/viewport_width=320
+window/size/viewport_height=140
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

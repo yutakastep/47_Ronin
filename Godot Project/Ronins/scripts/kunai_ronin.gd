@@ -1,8 +1,5 @@
-class_name KunaiRonin extends CharacterBody2D
+class_name KunaiRonin extends BaseRonin
 
-@export var speed = 60
-@export var jump_speed = -200
-@export var gravity = 500
 var combo_count: int = 0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parent = get_parent()
@@ -114,7 +111,7 @@ func _physics_process(delta):
 func attack(attack_indx, attack) -> void:
 	if(1 < attack_indx && attack_indx < 4 && jumping):
 		return
-	$AnimatedSprite2D.play(attack)
+	$AnimatedSprite2D.play(attack, attack_speed)
 	attack_index = attack_indx
 	attacking = true
 	$ComboTimer.stop()
@@ -156,15 +153,8 @@ func _on_combo_timer_timeout() -> void:
 		return
 	sheath()
 
-# function to increase speed for item pickups
-# might need a global item pickup manager for all the ronin
-# if we're being lazy honestly we could just copy paste item effects for all the ronin
-# unless items would have different effects for different ronin
-func increase_speed(spd_inc_amount):
-	speed += spd_inc_amount
-	print("increase speed by: ", spd_inc_amount)
-	
-	
+
+
 func _on_hit_detection_area_entered(area: Area2D) -> void:
 	if area.get_parent() is CharacterBody2D:
 		$Flash.play("hit")

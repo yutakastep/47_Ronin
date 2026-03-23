@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://521fh4dfxmx2"]
+
+[ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_0gdgk"]
+[ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="2_hnjtk"]
+[ext_resource type="Texture2D" uid="uid://cvhpffvvhlpp6" path="res://Items/sprites/Turnip.png" id="3_y5hj5"]
+
+[resource]
+script = ExtResource("2_hnjtk")
+name = "Turnip"
+description = "MMM delicious turnip
+Makes you jump higher."
+texture = ExtResource("3_y5hj5")
+metadata/_custom_type_script = "uid://cnmrwlgwnvonb"
