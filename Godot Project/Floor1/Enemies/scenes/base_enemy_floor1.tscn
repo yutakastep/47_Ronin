@@ -1,22 +1,6 @@
 [gd_scene format=3 uid="uid://bk8pew8o0wgcn"]
 
 [ext_resource type="Script" uid="uid://chwnpdu7ar5du" path="res://Floor1/Enemies/scripts/base_enemy_floor1.gd" id="1_1n0qx"]
-[ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_5ebkm"]
-[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken.tres" id="3_r4xjf"]
-[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/resources/turnip.tres" id="4_5ebkm"]
-
-[sub_resource type="Resource" id="Resource_kn2jo"]
-script = ExtResource("2_5ebkm")
-item = ExtResource("3_r4xjf")
-max_amount = 3
-metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
-
-[sub_resource type="Resource" id="Resource_twtcx"]
-script = ExtResource("2_5ebkm")
-item = ExtResource("4_5ebkm")
-max_amount = 2
-metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [node name="BaseEnemyFloor1" type="Node2D" unique_id=704091258]
 script = ExtResource("1_1n0qx")
-drops = Array[ExtResource("2_5ebkm")]([SubResource("Resource_kn2jo"), SubResource("Resource_twtcx")])
