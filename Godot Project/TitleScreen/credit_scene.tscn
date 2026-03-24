@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cm7es1rslpdwr"]
+
+[ext_resource type="Script" uid="uid://bwpepbqus5jbk" path="res://TitleScreen/credit_scene.gd" id="1_u1vek"]
+
+[node name="CreditScene" type="Node2D" unique_id=1200056521]
+script = ExtResource("1_u1vek")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1858168833]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=749419379]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1319273274]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45882353)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1703290657]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_right = 41.0
+offset_bottom = 62.0
+grow_horizontal = 2
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control" unique_id=1450517005]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -374.5
+offset_top = -209.0
+offset_right = 374.5
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits
+
+Temp pickup assets: Free Pixel Food! by Henry Software"
+horizontal_alignment = 1
+
+[node name="ButtonBack" type="Button" parent="CanvasLayer/Control" unique_id=973375870]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 116.0
+grow_vertical = 0
+text = "back
+"
