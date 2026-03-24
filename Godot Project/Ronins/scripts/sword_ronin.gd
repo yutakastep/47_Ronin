@@ -16,8 +16,6 @@ var curr_jump = 0
 var knocked_back = false
 var was_on_floor = true
 
-var health = 3
-
 func _ready() -> void:
 	PlayerManager.player = self
 	global_position = spawn_position
@@ -160,7 +158,6 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 		$Flash.play("hit")
 		knockback_velocity = 100 if area.get_parent().direction.x > 0 else -100
 		knocked_back = true
-		health -= 1
-		if health <= 0:
-			queue_free()
 		
+		# take_damage declared in base_ronin, takes damage amount as argument
+		take_damage(1)

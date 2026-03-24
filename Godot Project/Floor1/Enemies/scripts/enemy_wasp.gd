@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name EnemyWasp extends Floor1Enemies
 
 @onready var state = "flying"
 @onready var speed = 20

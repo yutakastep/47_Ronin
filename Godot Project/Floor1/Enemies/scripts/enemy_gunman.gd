@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name EnemyGunman extends Floor1Enemies
 
 @onready var state = "waiting"
 @onready var speed = 20
@@ -79,6 +79,11 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 	$Flash.play("hit")
 	health -= 1
 	if(health <= 0):
-		queue_free()
+		_on_gunman_death()
 	knockback_velocity = -100 if direction.x > 0 else 100
 	knocked_back = true
+
+func _on_gunman_death() -> void:
+	
+	queue_free()
+	pass

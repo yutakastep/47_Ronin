@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://da2wsfkwg1gh2"]
 
 [ext_resource type="Script" uid="uid://bwirt6ql1hxm6" path="res://Testing/scripts/test_floor.gd" id="1_w5j3k"]
-[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/turnip.tres" id="5_261ir"]
-[ext_resource type="Resource" uid="uid://8kj34h77uwg4" path="res://Items/sake.tres" id="5_w5j3k"]
+[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/resources/turnip.tres" id="5_261ir"]
+[ext_resource type="Resource" uid="uid://8kj34h77uwg4" path="res://Items/resources/sake.tres" id="5_w5j3k"]
 [ext_resource type="PackedScene" uid="uid://b1bo5mtxrcbrh" path="res://Items/item_pickup/ItemPickup.tscn" id="7_sqffn"]
-[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/chicken.tres" id="8_pn1xt"]
+[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken.tres" id="8_pn1xt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ha5m5"]
 b = Vector2(0, 182)
