@@ -9,6 +9,23 @@ class_name BaseRonin extends CharacterBody2D
 @export var gravity: float = 500
 @export var attack_speed: float = 1.0
 
+@export var max_health: int = 3
+var health: int
+
+signal died(ronin)
+
+func _ready():
+	health = max_health
+
+func take_damage(amount: int) -> void:
+	health -= amount
+	if health <- 0:
+		death()
+
+func death() -> void:
+	died.emit(self)
+	queue_free()
+
 # function to increase speed for item pickups
 # might need a global item pickup manager for all the ronin
 # if we're being lazy honestly we could just copy paste item effects for all the ronin

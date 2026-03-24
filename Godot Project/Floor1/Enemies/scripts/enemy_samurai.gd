@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name EnemySamurai extends Floor1Enemies
 
 @onready var state = "walking"
 @onready var speed = 20
