@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var kunai = load("res://misc/scenes/kunai.tscn")
 @onready var bullet = load("res://misc/scenes/bullet.tscn")
 @onready var ronins = load_ronins("res://Ronins/scenes/")
 @onready var samurai = load("res://Floor1/Enemies/scenes/enemy_samurai.tscn")
@@ -41,25 +40,6 @@ func spawn_enemy():
 	add_child.call_deferred(enemy)
 	enemy.tree_exiting.connect(_on_enemy_death)
 	enemies.push_back(enemy)
-	
-func throw(up, direction, combo_end):
-	var instance = kunai.instantiate()
-	instance.up = up
-	instance.dir = 1 if direction || up else -1
-	ronin_spawn = current_ronin.global_position
-	instance.spwnPos = ronin_spawn
-	if up:
-		var x = ronin_spawn.x - 4 if direction else ronin_spawn.x + 5
-		instance.spwnPos = Vector2(x, ronin_spawn.y - 2 + combo_end - 1)
-		await get_tree().create_timer(0.2).timeout
-		
-	elif combo_end > 0:
-		instance.spwnPos = Vector2(ronin_spawn.x, ronin_spawn.y - 2 + combo_end - 1)
-		if combo_end > 1:
-			await get_tree().create_timer(0.2).timeout
-			throw(false, direction, combo_end-2)
-		
-	add_child.call_deferred(instance)
 
 func shoot(direction, position):
 	var instance = bullet.instantiate()

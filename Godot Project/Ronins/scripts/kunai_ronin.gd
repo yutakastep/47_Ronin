@@ -4,6 +4,7 @@ var combo_count: int = 0
 @onready var combo_timer: Timer = $ComboTimer
 @onready var parent = get_parent()
 @onready var knockback_velocity = 0
+@onready var kunai = load("res://misc/scenes/kunai.tscn")
 
 # this is temporary, will change depending on if we need to make a character manager
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
@@ -36,20 +37,20 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack"):
 			if Input.is_action_pressed("ui_up"):
 				attack(4, "attack_up")
-				parent.throw(true, $AnimatedSprite2D.flip_h, 0)
+				throw(true, $AnimatedSprite2D.flip_h, 0)
 
 			match attack_index:
 				0:
 					attack(1, "attack_one")
-					parent.throw(false, $AnimatedSprite2D.flip_h, 0)
+					throw(false, $AnimatedSprite2D.flip_h, 0)
 				1:
 					if !attacking:
 						attack(2, "attack_two")
-						parent.throw(false, $AnimatedSprite2D.flip_h,0)
+						throw(false, $AnimatedSprite2D.flip_h,0)
 				2:
 					if !attacking:
 						attack(3, "attack_three")
-						parent.throw(false, $AnimatedSprite2D.flip_h, 3)
+						throw(false, $AnimatedSprite2D.flip_h, 3)
 		elif jumping and !attacking:
 			if velocity.y >= -200:
 				$AnimatedSprite2D.frame = 0
@@ -115,6 +116,25 @@ func attack(attack_indx, attack) -> void:
 	attack_index = attack_indx
 	attacking = true
 	$ComboTimer.stop()
+
+func throw(up, direction, combo_end):
+	var instance = kunai.instantiate()
+	instance.up = up
+	instance.dir = 1 if direction || up else -1
+	var ronin_spawn = global_position
+	instance.spwnPos = ronin_spawn
+	if up:
+		var x = ronin_spawn.x - 4 if direction else ronin_spawn.x + 5
+		instance.spwnPos = Vector2(x, ronin_spawn.y - 2 + combo_end - 1)
+		await get_tree().create_timer(0.2).timeout
+		
+	elif combo_end > 0:
+		instance.spwnPos = Vector2(ronin_spawn.x, ronin_spawn.y - 2 + combo_end - 1)
+		if combo_end > 1:
+			await get_tree().create_timer(0.2).timeout
+			throw(false, direction, combo_end-2)
+		
+	get_parent().add_child.call_deferred(instance)
 
 func sheath() -> void:
 	$AnimatedSprite2D.play("sheath")

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dwlpe3reslrqu"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8ryt6"]
+b = Vector2(0, 648)
+
+[node name="Homebase" type="Node2D" unique_id=278315313]
+
+[node name="Walls" type="Node2D" parent="." unique_id=1398617040]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=1641148513]
+
+[node name="East" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=312948925]
+shape = SubResource("SegmentShape2D_8ryt6")
+
+[node name="West" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1993628473]
+
+[node name="Floor" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1765560138]
+
+[node name="Ceiling" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1019266669]
+
+[node name="Tengu" type="Control" parent="." unique_id=1923001580]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gatcha" type="Control" parent="." unique_id=458486083]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Door" type="Control" parent="." unique_id=4404363]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
