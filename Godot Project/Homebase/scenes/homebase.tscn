@@ -1,37 +1,155 @@
 [gd_scene format=3 uid="uid://dwlpe3reslrqu"]
 
+[ext_resource type="Texture2D" uid="uid://dtjjy53257npq" path="res://Homebase/sprites/homebase.png" id="1_c0smb"]
+[ext_resource type="Script" uid="uid://cly3axdusxpo6" path="res://Homebase/scripts/homebase.gd" id="1_wgnfd"]
+[ext_resource type="Texture2D" uid="uid://dwxjqlwcm2218" path="res://Homebase/sprites/tengu.png" id="2_dho7p"]
+[ext_resource type="Texture2D" uid="uid://c10ev5ytw5bgp" path="res://Homebase/sprites/teaset.png" id="3_tgyya"]
+[ext_resource type="PackedScene" uid="uid://c0ome6crdc44u" path="res://Ronins/scenes/homebase_ronin.tscn" id="4_tgyya"]
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_8ryt6"]
-b = Vector2(0, 648)
+a = Vector2(8, 37)
+b = Vector2(8, 88)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wgnfd"]
+a = Vector2(313, 37)
+b = Vector2(313, 90)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uus8i"]
+a = Vector2(312, 87)
+b = Vector2(8, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrjah"]
+atlas = ExtResource("2_dho7p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsahf"]
+atlas = ExtResource("2_dho7p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhb5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrjah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsahf")
+}],
+"loop": false,
+"name": &"looking",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a44kq"]
+atlas = ExtResource("3_tgyya")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc2ri"]
+atlas = ExtResource("3_tgyya")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibrdy"]
+atlas = ExtResource("3_tgyya")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jn4mp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a44kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc2ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibrdy")
+}],
+"loop": true,
+"name": &"steam",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3smou"]
+size = Vector2(30, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf781"]
+size = Vector2(14, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqcan"]
+size = Vector2(65, 44)
 
 [node name="Homebase" type="Node2D" unique_id=278315313]
+script = ExtResource("1_wgnfd")
 
-[node name="Walls" type="Node2D" parent="." unique_id=1398617040]
+[node name="Background" type="Sprite2D" parent="." unique_id=1630013448]
+position = Vector2(0, 45)
+texture = ExtResource("1_c0smb")
+centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=1641148513]
+[node name="Walls" type="Node2D" parent="Background" unique_id=1398617040]
 
-[node name="East" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=312948925]
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Walls" unique_id=1641148513]
+
+[node name="East" type="CollisionShape2D" parent="Background/Walls/StaticBody2D" unique_id=312948925]
 shape = SubResource("SegmentShape2D_8ryt6")
 
-[node name="West" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1993628473]
+[node name="West" type="CollisionShape2D" parent="Background/Walls/StaticBody2D" unique_id=1993628473]
+shape = SubResource("SegmentShape2D_wgnfd")
 
-[node name="Floor" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1765560138]
+[node name="Floor" type="CollisionShape2D" parent="Background/Walls/StaticBody2D" unique_id=1765560138]
+shape = SubResource("SegmentShape2D_uus8i")
 
-[node name="Ceiling" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=1019266669]
-
-[node name="Tengu" type="Control" parent="." unique_id=1923001580]
+[node name="Tengu" type="Control" parent="Background" unique_id=1923001580]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Gatcha" type="Control" parent="." unique_id=458486083]
+[node name="Tengu" type="AnimatedSprite2D" parent="Background/Tengu" unique_id=1471361361]
+position = Vector2(93, 69)
+sprite_frames = SubResource("SpriteFrames_bhb5t")
+animation = &"looking"
+frame = 1
+frame_progress = 1.0
+
+[node name="Teaset" type="AnimatedSprite2D" parent="Background/Tengu" unique_id=1202457986]
+position = Vector2(112, 76)
+sprite_frames = SubResource("SpriteFrames_jn4mp")
+animation = &"steam"
+autoplay = "steam"
+frame_progress = 0.99274296
+
+[node name="TenguTalk" type="Area2D" parent="Background/Tengu" unique_id=329611114]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Tengu/TenguTalk" unique_id=1878009595]
+position = Vector2(95, 72)
+shape = SubResource("RectangleShape2D_3smou")
+
+[node name="Gatcha" type="Control" parent="Background" unique_id=458486083]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Door" type="Control" parent="." unique_id=4404363]
+[node name="GachaPlay" type="Area2D" parent="Background/Gatcha" unique_id=1467693849]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Gatcha/GachaPlay" unique_id=422711951]
+position = Vector2(184, 71)
+shape = SubResource("RectangleShape2D_nf781")
+
+[node name="Door" type="Control" parent="Background" unique_id=4404363]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 70.0
+offset_top = 43.0
+offset_right = 110.0
+offset_bottom = 83.0
+
+[node name="Leave" type="Area2D" parent="Background/Door" unique_id=1711379006]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/Leave" unique_id=971862768]
+position = Vector2(209.5, 17)
+shape = SubResource("RectangleShape2D_qqcan")
+
+[node name="HomebaseRonin" parent="Background" unique_id=1005983935 instance=ExtResource("4_tgyya")]
+position = Vector2(30, 70)
