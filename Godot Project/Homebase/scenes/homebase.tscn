@@ -167,6 +167,8 @@ offset_bottom = 83.0
 mouse_filter = 2
 
 [node name="Leave" type="Area2D" parent="Background/Door" unique_id=1711379006]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Door/Leave" unique_id=971862768]
 position = Vector2(209.5, 17)
@@ -208,4 +210,6 @@ position = Vector2(162, 91)
 
 [connection signal="area_entered" from="Background/Gatcha/GachaPlay" to="." method="_on_gacha_play_area_entered"]
 [connection signal="area_exited" from="Background/Gatcha/GachaPlay" to="." method="_on_gacha_play_area_exited"]
+[connection signal="area_entered" from="Background/Door/Leave" to="." method="_on_leave_area_entered"]
+[connection signal="area_exited" from="Background/Door/Leave" to="." method="_on_leave_area_exited"]
 [connection signal="input_event" from="ExitGachaArea" to="." method="_on_exit_gacha_area_input_event"]
