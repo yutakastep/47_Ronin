@@ -1,5 +1,4 @@
 extends Node2D
-@onready var normal_rooms = load_rooms("res://Floor1/scenes/Rooms/Normal/")
 @onready var top_layer = {
 	"earth" : load_rooms("res://Floor1/scenes/Rooms/top_layer/earth/"),
 	"midair" : load_rooms("res://Floor1/scenes/Rooms/top_layer/midair/")
@@ -29,6 +28,10 @@ var end_invalid = false
 var room_cache = {}
 
 func _ready():
+	#print(top_layer["earth"])
+	#print(top_layer["midair"])
+	#print(sub_layer["earth"])
+	#print(sub_layer["midair"])
 	cache_all_rooms()
 	rng.randomize()
 	grid_w = rng.randi_range(10, 15)
@@ -332,6 +335,8 @@ func load_rooms(path: String) -> Array:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			if file_name.ends_with(".remap"):
+				file_name = file_name.replace(".remap", "")
 			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
 				files.append(path.path_join(file_name))
 			file_name = dir.get_next()

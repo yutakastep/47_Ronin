@@ -19,9 +19,7 @@ func set_title_screen():
 	pass
 
 func start_game():
-	# TODO: Insert code here to load the first floor or homebase
-	# TODO: Project settings > application > run > main scene > set to title scene
-	pass
+	get_tree().change_scene_to_file("res://Floor1/scenes/floor1.tscn")
 
 func go_to_credits():
 	button_credit.pressed.connect(credits)

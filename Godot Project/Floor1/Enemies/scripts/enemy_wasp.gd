@@ -15,14 +15,15 @@ var near_player = false
 var knocked_back = false
 
 func _ready() -> void:
-	global_position = spawn_position
+	#this line of code messes up the enemy trigger logic, as it overrides the global_position after it is set by the enemy trigger
+	#global_position = spawn_position
 	pass
 
 func _process(delta: float) -> void:
 	match state:
 		"flying":
 			if !is_instance_valid(player):
-				pass
+				return
 			elif !knocked_back:
 				flying(player.global_position)
 				if velocity.x > 0:

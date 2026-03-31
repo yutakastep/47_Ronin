@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_ytslk"]
 [ext_resource type="Texture2D" uid="uid://cxxvfb4tveupk" path="res://Floor1/sprites/tile_boss_00.png" id="3_cf3n3"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="4_he4hk"]
+[ext_resource type="PackedScene" uid="uid://78ce0kpxfyid" path="res://Floor1/Triggers/scenes/enemy_trigger.tscn" id="6_yj2m0"]
+[ext_resource type="PackedScene" uid="uid://b882p6uv0oo46" path="res://Floor1/Enemies/scenes/enemy_gunman.tscn" id="7_6m0nf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qydqc"]
 texture = ExtResource("1_aaslj")
@@ -173,3 +175,6 @@ tile_set = SubResource("TileSet_47ang")
 left = true
 right = true
 section = "earth"
+
+[node name="EnemyTrigger" parent="." unique_id=1541612044 instance=ExtResource("6_yj2m0")]
+enemy_scene = ExtResource("7_6m0nf")

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://m3t11b6ad27p"]
+[gd_scene format=3 uid="uid://ckd3d1vlgvaim"]
 
 [ext_resource type="Script" uid="uid://bg80h4f4sohli" path="res://Floor1/Enemies/scripts/enemy_wasp.gd" id="1_y2xih"]
 [ext_resource type="Texture2D" uid="uid://b3f7haeiveljb" path="res://Floor1/Enemies/sprites/wasp/flying.png" id="2_y2xih"]
@@ -159,7 +159,7 @@ height = 17.304163
 light_mask = 9
 visibility_layer = 5
 collision_layer = 4
-collision_mask = 27
+collision_mask = 10
 script = ExtResource("1_y2xih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
