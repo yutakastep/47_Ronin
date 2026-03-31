@@ -19,6 +19,7 @@ func _ready():
 	elif GameEvents.floor_count % 2 == 0:
 		dimensions = get_node("SpecialManager").room_generation()
 	else:
+		print("Go to RoomManagesr")
 		dimensions = get_node("RoomManager").room_generation()
 	ronin_spawn = dimensions[1]
 	spawn_ronin()

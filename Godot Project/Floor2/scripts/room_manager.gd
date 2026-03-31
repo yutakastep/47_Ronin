@@ -1,6 +1,6 @@
 extends "res://Floor1/scripts/room_manager.gd"
 @onready var castle_layer = {
-	"normal" : load_rooms("res://Floor2/scenes/Rooms/castle/") 
+	"castle" : load_rooms("res://Floor2/scenes/Rooms/castle/") 
 }
 
 func _ready():
@@ -11,7 +11,8 @@ func _ready():
 	#grid_h = 2
 	GameEvents.next_floor_level = grid_h-1
 	
-	grid_l = rng.randi_range(3, (grid_w*grid_h)/3)
+	#grid_l = rng.randi_range(3, (grid_w*grid_h)/3)
+	grid_l = 3
 
 func cache_all_rooms():
 	var all_paths = []
@@ -70,6 +71,8 @@ func generate_grid(x, y, section, prior):
 				#print("Before ", pairing[0], ", ", pairing[1],": ", selection)
 				selection = search(selection, pairing[2], false)
 				valid_direction[pairing[2]] = false
+			elif pairing[0] == x and pairing[1] == y-1 and grid[pairing[1]][pairing[0]].get_node("room_info").end:
+				selection = search(selection, pairing[2], false)
 			elif grid[pairing[1]][pairing[0]].get_node("room_info").keyword == "Visited":
 				#print("Condition: pairing has been visited before")
 				#print(pairing[2], ", ", polarity)
@@ -118,7 +121,7 @@ func generate_grid(x, y, section, prior):
 				#print("Finish Recursion")
 				
 func default_grid() -> Array:
-	grid = []
+	grid.clear()
 	for row in range(0, grid_h):
 		grid.push_back([])
 		for col in range(0, grid_w):
@@ -135,15 +138,16 @@ func default_grid() -> Array:
 	#print("Section of Start: ", grid[0][temp].get_node("room_info").section)
 	var end_vertical = rng.randi_range(0, grid_h-1)
 	var end_horizontal = rng.randi_range(0, grid_w-1)
-	while(grid[end_vertical][end_horizontal].get_node("room_info").section != "earth" or abs(end_horizontal - start_horizontal) + abs(end_vertical - start_vertical) < grid_l):
+	while(grid[end_vertical][end_horizontal].get_node("room_info").section != "castle" or abs(end_horizontal - start_horizontal) + abs(end_vertical - start_vertical) < grid_l):
 		end_vertical = rng.randi_range(0, grid_h-1)
 		end_horizontal = rng.randi_range(0, grid_w-1)
+		print("Stuck in While Loop?")
 	grid[end_vertical][end_horizontal].get_node("room_info").end = true
 	return [Vector2(start_horizontal, start_vertical), Vector2(end_horizontal, end_vertical)]
 
 func room_generation() -> Array:
 	rng.randomize()
-	
+	print("Made it to Room Generation")
 	
 	#grid[0][rng.randi_range(0, grid_w)] = top_layer
 	
@@ -154,9 +158,11 @@ func room_generation() -> Array:
 	var visited = []
 	while !visited.has(start_end_location[1]) or end_invalid:
 		#dprint("Stuck in Loop")
+		print("Made it to default grid")
 		start_end_location = default_grid()
 		end_coords = start_end_location[1]
 		end_invalid = false
+		print("Made it to generate grid")
 		generate_grid(start_end_location[0].x, start_end_location[0].y, "castle", {"connected" : true, "x" : start_end_location[0].x, "y" : start_end_location[0].y, "section" : "castle"})
 		spawn_point = Vector2(room_w * start_end_location[0].x, room_h * start_end_location[0].y + 40)
 		grid_check_queue = [start_end_location[0]]
