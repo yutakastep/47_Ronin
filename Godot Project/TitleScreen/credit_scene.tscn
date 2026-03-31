@@ -51,7 +51,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Credits
 
-Temp pickup assets: Free Pixel Food! by Henry Software"
+Temp pickup assets: Free Pixel Food! by Henry Software
+
+Pixel font: Libre Quake"
 horizontal_alignment = 1
 
 [node name="ButtonBack" type="Button" parent="CanvasLayer/Control" unique_id=973375870]
