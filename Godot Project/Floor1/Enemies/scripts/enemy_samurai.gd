@@ -14,14 +14,15 @@ var near_player = false
 var knocked_back = false
 
 func _ready() -> void:
-	global_position = spawn_position
+	#this line of code messes up the enemy trigger logic, as it overrides the global_position after it is set by the enemy trigger
+	#global_position = spawn_position
 	pass
 
 func _process(delta: float) -> void:
 	match state:
 		"walking":
 			if !is_instance_valid(player):
-				pass
+				return
 			elif !knocked_back:
 				walking(player.global_position, delta)
 				if velocity.x < 0:
@@ -39,7 +40,7 @@ func _process(delta: float) -> void:
 			$AnimatedSprite2D.play("attack")
 			
 func _physics_process(delta):
-
+	#print(global_position)
 	# Add gravity every frame
 	velocity.y += gravity * delta
 	

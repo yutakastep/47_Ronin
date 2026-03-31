@@ -89,6 +89,7 @@ texture = ExtResource("1_xx6l0")
 
 [sub_resource type="TileSet" id="TileSet_gjn77"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_ikvyn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk36c"]
@@ -124,6 +125,7 @@ tile_map_data = PackedByteArray("AAD7/wIAAAAAAAAAAAD7/wMAAAAAAAEAAAD8/wIAAAABAAA
 tile_set = SubResource("TileSet_dsswo")
 
 [node name="EnemyTrigger" type="Area2D" parent="." unique_id=1897613037]
+collision_layer = 32
 collision_mask = 2
 script = ExtResource("3_gortc")
 enemy_scene = ExtResource("4_mfhod")

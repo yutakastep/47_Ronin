@@ -19,8 +19,6 @@ func set_title_screen():
 
 func start_game():
 	get_tree().change_scene_to_file("res://Floor1/scenes/floor1.tscn")
-	# TODO: Project settings > application > run > main scene > set to title scene
-	pass
 
 func go_to_credits():
 	button_credit.pressed.connect(credits)

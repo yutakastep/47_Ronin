@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://b21rsw5035801" path="res://Floor1/sprites/floor1_tilemap_1.png" id="1_urmrf"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="2_kkcsf"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_1fqe5"]
+[ext_resource type="PackedScene" uid="uid://78ce0kpxfyid" path="res://Floor1/Triggers/scenes/enemy_trigger.tscn" id="4_1fqe5"]
+[ext_resource type="PackedScene" uid="uid://ckd3d1vlgvaim" path="res://Floor1/Enemies/scenes/enemy_wasp.tscn" id="5_vbosp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
 texture = ExtResource("1_urmrf")
@@ -122,3 +124,8 @@ tile_set = SubResource("TileSet_kof16")
 left = true
 right = true
 section = "midair"
+
+[node name="EnemyTrigger" parent="." unique_id=1541612044 instance=ExtResource("4_1fqe5")]
+enemy_scene = ExtResource("5_vbosp")
+
+[editable path="EnemyTrigger"]

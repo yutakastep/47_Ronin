@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bt7kruordw1qw" path="res://Floor1/sprites/tile_sublayer_bg_03.png" id="4_6rbtt"]
 [ext_resource type="Texture2D" uid="uid://b2x27tus2av2m" path="res://Floor1/sprites/tile_sublayer_00.png" id="5_rqlur"]
 [ext_resource type="Texture2D" uid="uid://b66fewru4eqpn" path="res://Floor1/sprites/floor1_tilemap_bg_1.png" id="6_bp0ps"]
+[ext_resource type="PackedScene" uid="uid://78ce0kpxfyid" path="res://Floor1/Triggers/scenes/enemy_trigger.tscn" id="8_s4p88"]
+[ext_resource type="PackedScene" uid="uid://ckd3d1vlgvaim" path="res://Floor1/Enemies/scenes/enemy_wasp.tscn" id="9_iv7yg"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="9_lrvrj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikvyn"]
@@ -216,3 +218,18 @@ tile_set = SubResource("TileSet_dsswo")
 top = true
 bottom = true
 section = "earth"
+
+[node name="EnemyTrigger" parent="." unique_id=1541612044 instance=ExtResource("8_s4p88")]
+enemy_scene = ExtResource("9_iv7yg")
+
+[node name="Marker2D" parent="EnemyTrigger" index="1" unique_id=193733582]
+position = Vector2(-140, -4)
+
+[node name="EnemyTrigger2" parent="." unique_id=1756952806 instance=ExtResource("8_s4p88")]
+enemy_scene = ExtResource("9_iv7yg")
+
+[node name="Marker2D" parent="EnemyTrigger2" index="1" unique_id=193733582]
+position = Vector2(142, 0)
+
+[editable path="EnemyTrigger"]
+[editable path="EnemyTrigger2"]

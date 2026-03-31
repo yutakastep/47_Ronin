@@ -16,14 +16,14 @@ var knocked_back = false
 
 func _ready() -> void:
 	super()
-	global_position = spawn_position
 	$ShootTimer.start(2)
 
 func _process(delta: float) -> void:
+	
 	match state:
 		"waiting":
 			if !is_instance_valid(player):
-				pass
+				return
 			waiting(player.global_position)
 			if yonder < 0:
 				$AnimatedSprite2D.flip_h = true

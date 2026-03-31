@@ -368,7 +368,7 @@ _data = {
 
 [node name="SpearRonin" type="CharacterBody2D" unique_id=1005983935 groups=["Player"]]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 53
 script = ExtResource("1_vw0bq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]

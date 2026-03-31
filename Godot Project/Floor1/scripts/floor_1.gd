@@ -22,11 +22,15 @@ func _ready():
 		dimensions = get_node("RoomManager").room_generation()
 	ronin_spawn = dimensions[1]
 	spawn_ronin()
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit()
 	
 func _on_ronin_death(ronin):
 	ronin_spawn = current_ronin.global_position
 	spawn_ronin()
-	GameEvents.ronin_death.emit(current_ronin)
+	GameEvents.ronin_death.emit()
 	
 func spawn_ronin():
 	current_ronin  = PlayerManager.spawn_player(self, ronin_spawn)
@@ -49,6 +53,7 @@ func load_ronin(path: String) -> Array:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			file_name = file_name.replace(".remap", "").replace(".import", "")
 			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
 				files.append(path.path_join(file_name))
 			file_name = dir.get_next()

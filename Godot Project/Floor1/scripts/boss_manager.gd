@@ -89,6 +89,8 @@ func load_rooms(path: String) -> Array:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			if file_name.ends_with(".remap"):
+				file_name = file_name.replace(".remap", "")
 			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
 				files.append(path.path_join(file_name))
 			file_name = dir.get_next()

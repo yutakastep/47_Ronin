@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="47_Ronin"
-run/main_scene="uid://da2wsfkwg1gh2"
+run/main_scene="uid://dwjh6c8q4ioqn"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
