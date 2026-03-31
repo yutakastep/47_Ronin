@@ -48,3 +48,4 @@ func exit_gacha():
 	near = "gacha"
 	$Gacha.visible = false
 	$Background/HomebaseRonin.moveable = true
+	$Gacha.reset()

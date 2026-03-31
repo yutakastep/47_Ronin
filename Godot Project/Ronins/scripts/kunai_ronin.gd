@@ -1,27 +1,19 @@
 class_name KunaiRonin extends BaseRonin
 
-var combo_count: int = 0
-@onready var combo_timer: Timer = $ComboTimer
-@onready var knockback_velocity = 0
 @onready var kunai = load("res://misc/scenes/kunai.tscn")
 
 # this is temporary, will change depending on if we need to make a character manager
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
 
-var spawn_position : Vector2
-var attack_index = 0
-var sheathing = false
-var timedout = false
-var attacking = false
-var jumping = false
-var jump_cap = 2
-var curr_jump = 0
-var knocked_back = false
-var was_on_floor = true
-var dying = false
-
+enum BodyOption {SWORD, SPEAR, KUNAI}
 enum ColorOption {RED, BLUE, BROWN, GREEN, PURPLE}
 enum HeadOption {WRAP, HAIR, CHONMAGE}
+
+@export var body: BodyOption = BodyOption.SWORD :
+	set(value):
+		body = value
+		if is_node_ready():
+			apply_variant()
 
 @export var head: HeadOption = HeadOption.WRAP :
 	set(value):
@@ -36,6 +28,12 @@ enum HeadOption {WRAP, HAIR, CHONMAGE}
 			apply_variant()
 
 func apply_variant():
+	var body_map = {
+		BodyOption.SWORD: "Sword",
+		BodyOption.SPEAR: "Spear",
+		BodyOption.KUNAI: "Kunai"
+	}
+	
 	var color_map = {
 		ColorOption.RED: "Red",
 		ColorOption.BLUE: "Blue",
@@ -50,30 +48,19 @@ func apply_variant():
 		HeadOption.CHONMAGE: "Chonmage"
 	}
 	
-	var base_path = "res://Ronins/sprites/Kunai/%s/%s/" % [head_map[head], color_map[color]]
+	var base_path = "res://Ronins/sprites/%s/%s/%s/" % [body_map[body], head_map[head], color_map[color]]
 	
 	var sheet_map = {
 		"breathing":   load(base_path + "breathing.png"),
 		"walking":   load(base_path + "walking.png"),
-		"attack_one": load(base_path + "attacking.png"),
-		"attack_two": load(base_path + "attacking.png"),
-		"attack_three": load(base_path + "attacking.png"),  
-		"attack_up": load(base_path + "up-attack.png"),
+		"attack_one": load(base_path + "attack.png"),
+		"attack_two": load(base_path + "attack.png"),
+		"attack_three": load(base_path + "attack.png"),  
+		"attack_up": load(base_path + "up_attack.png"),
 		"jump":   load(base_path + "jump.png"),
-		"sheath":   load(base_path + "attacking.png"),
-		"reload":   load(base_path + "attacking.png"),
+		"sheath":   load(base_path + "attack.png"),
 		"death":  load(base_path + "death.png"),
 	}
-	
-	var frames = $AnimatedSprite2D.sprite_frames
-	for anim_name in frames.get_animation_names():
-		for i in frames.get_frame_count(anim_name):
-			var atlas = frames.get_frame_texture(anim_name, i)
-			if atlas == null:
-				continue
-			if not atlas is AtlasTexture:
-				continue
-			atlas.atlas = sheet_map.get(anim_name)
 
 func _ready() -> void:
 	#PlayerManager.player = self

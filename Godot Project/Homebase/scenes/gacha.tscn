@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xjm2x3fcvs7" path="res://Homebase/scripts/gacha.gd" id="1_8rs7f"]
 [ext_resource type="Texture2D" uid="uid://cel8adcgbllm0" path="res://Homebase/sprites/GachaponPlay.png" id="1_ku480"]
+[ext_resource type="PackedScene" uid="uid://fab6c6vtx823" path="res://Homebase/scenes/showcase_ronin.tscn" id="3_2sxqh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rs7f"]
 atlas = ExtResource("1_ku480")
@@ -356,6 +357,91 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Animation" id="Animation_8rs7f"]
+resource_name = "MoveMachine"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PulledLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShowcaseRonin:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2sxqh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PulledLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShowcaseRonin:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbcdl"]
+_data = {
+&"MoveMachine": SubResource("Animation_8rs7f"),
+&"RESET": SubResource("Animation_2sxqh")
+}
+
 [node name="Gacha" type="Node2D" unique_id=949723592]
 script = ExtResource("1_8rs7f")
 
@@ -369,3 +455,22 @@ color = Color(0, 0, 0, 0.6039216)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1604772479]
 sprite_frames = SubResource("SpriteFrames_o1hwu")
 animation = &"spin"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1504191628]
+libraries/ = SubResource("AnimationLibrary_fbcdl")
+
+[node name="PulledLabel" type="Label" parent="." unique_id=343483365]
+modulate = Color(1, 1, 1, 0)
+offset_left = -80.0
+offset_top = -40.0
+offset_right = -9.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ShowcaseRonin" parent="." unique_id=1005983935 instance=ExtResource("3_2sxqh")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-45, 9)
+scale = Vector2(2, 2)

@@ -12,8 +12,22 @@ class_name BaseRonin extends CharacterBody2D
 @export var max_health: int = 3
 var health: int
 
-signal died(ronin)
+var spawn_position : Vector2
 
+var attack_index = 0
+var knockback_velocity = 0
+var sheathing = false
+var timedout = false
+var attacking = false
+var jumping = false
+var jump_cap = 2
+var curr_jump = 0
+var knocked_back = false
+var was_on_floor = true
+var dying = false
+
+signal died(ronin)
+	
 func _ready():
 	health = max_health
 

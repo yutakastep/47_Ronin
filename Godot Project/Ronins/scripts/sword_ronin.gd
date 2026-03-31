@@ -1,23 +1,14 @@
 class_name SwordRonin extends BaseRonin
 
-var combo_count: int = 0
-@onready var combo_timer: Timer = $ComboTimer
-@onready var knockback_velocity = 0
-
-var spawn_position : Vector2
-var attack_index = 0
-var sheathing = false
-var timedout = false
-var attacking = false
-var jumping = false
-var jump_cap = 2
-var curr_jump = 0
-var knocked_back = false
-var was_on_floor = true
-var dying = false
-
+enum BodyOption {SWORD, SPEAR, KUNAI}
 enum ColorOption {RED, BLUE, BROWN, GREEN, PURPLE}
 enum HeadOption {HAT, HAIR, CHONMAGE}
+
+@export var body: BodyOption = BodyOption.SWORD :
+	set(value):
+		body = value
+		if is_node_ready():
+			apply_variant()
 
 @export var head: HeadOption = HeadOption.HAT :
 	set(value):
@@ -32,6 +23,12 @@ enum HeadOption {HAT, HAIR, CHONMAGE}
 			apply_variant()
 
 func apply_variant():
+	var body_map = {
+		BodyOption.SWORD: "Sword",
+		BodyOption.SPEAR: "Spear",
+		BodyOption.KUNAI: "Kunai"
+	}
+	
 	var color_map = {
 		ColorOption.RED: "Red",
 		ColorOption.BLUE: "Blue",
@@ -46,7 +43,7 @@ func apply_variant():
 		HeadOption.CHONMAGE: "Chonmage"
 	}
 	
-	var base_path = "res://Ronins/sprites/Sword/%s/%s/" % [head_map[head], color_map[color]]
+	var base_path = "res://Ronins/sprites/%s/%s/%s/" % [body_map[body], head_map[head], color_map[color]]
 	
 	var sheet_map = {
 		"breathing":   load(base_path + "breathing.png"),

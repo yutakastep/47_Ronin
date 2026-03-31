@@ -290,10 +290,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hojko")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_k47fl")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -413,7 +413,7 @@ color = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 material = SubResource("ShaderMaterial_um34y")
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"attack_one"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(0, 1)

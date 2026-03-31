@@ -294,7 +294,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_epolo")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_3kkgy")
 }],
 "loop": false,
@@ -416,6 +416,7 @@ _data = {
 collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_cdmcs")
+body = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(1, 3)
@@ -425,8 +426,6 @@ shape = SubResource("CapsuleShape2D_q0hru")
 material = SubResource("ShaderMaterial_yygvq")
 sprite_frames = SubResource("SpriteFrames_6pewp")
 animation = &"death"
-frame = 2
-frame_progress = 1.0
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1681577053]
 

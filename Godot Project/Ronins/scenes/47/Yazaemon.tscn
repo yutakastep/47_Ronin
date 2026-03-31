@@ -347,7 +347,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i3v62")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_opo8h")
 }],
 "loop": false,
@@ -472,8 +472,6 @@ color = 1
 material = SubResource("ShaderMaterial_um34y")
 sprite_frames = SubResource("SpriteFrames_6pewp")
 animation = &"death"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(0, 1)

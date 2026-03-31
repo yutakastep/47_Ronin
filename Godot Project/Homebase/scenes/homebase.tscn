@@ -176,6 +176,14 @@ shape = SubResource("RectangleShape2D_qqcan")
 
 [node name="HomebaseRonin" parent="Background" unique_id=1005983935 instance=ExtResource("4_tgyya")]
 position = Vector2(30, 70)
+body = null
+head = null
+color = null
+speed = null
+jump_speed = null
+gravity = null
+attack_speed = null
+max_health = null
 
 [node name="RoninDecetion" type="Area2D" parent="Background/HomebaseRonin" unique_id=1618893366]
 collision_layer = 2
