@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d08e1wlogjkrp"]
+
+[ext_resource type="Script" uid="uid://b7a7t3qnr7wfx" path="res://GUI/player_hud/player_hud.gd" id="1_ekn64"]
+[ext_resource type="Texture2D" uid="uid://beqij8vnd6d0g" path="res://GUI/player_hud/sprites/hud.png" id="2_s0jlh"]
+
+[sub_resource type="FontVariation" id="FontVariation_ekn64"]
+
+[node name="PlayerHud" type="CanvasLayer" unique_id=1294573596]
+script = ExtResource("1_ekn64")
+
+[node name="Control" type="Control" parent="." unique_id=1109411980]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1423947185]
+position = Vector2(50, 17)
+texture = ExtResource("2_s0jlh")
+
+[node name="Label" type="Label" parent="." unique_id=2145705529]
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_ekn64")
+text = "12"
+horizontal_alignment = 1

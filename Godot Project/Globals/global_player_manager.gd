@@ -7,6 +7,9 @@ var player
 var ronins = []
 var rng = RandomNumberGenerator.new()
 
+var ronin_index: int = 1
+signal ronin_change(index)
+
 func _ready():
 	ronins = load_ronins("res://Ronins/scenes/47")
 	rng.randomize()
@@ -18,6 +21,7 @@ func spawn_player(parent, spawn_position):
 	player.name = "Player"
 	player.spawn_position = spawn_position
 	player.add_to_group("Player")
+	player.died.connect(_on_player_died)
 	parent.add_child.call_deferred(player)
 	return player
 
@@ -34,3 +38,7 @@ func load_ronins(path: String) -> Array:
 				files.append(path.path_join(file_name))
 			file_name = dir.get_next()
 	return files
+
+func _on_player_died(ronin):
+	ronin_index += 1
+	ronin_change.emit(ronin_index)
