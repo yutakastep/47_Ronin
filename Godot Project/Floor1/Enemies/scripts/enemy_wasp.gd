@@ -2,7 +2,7 @@ class_name EnemyWasp extends Floor1Enemies
 
 @onready var state = "flying"
 @onready var speed = 20
-@onready var gravity = 500
+@onready var gravity = 0
 @onready var knockback_velocity = 0
 
 
@@ -10,39 +10,39 @@ var spawn_position : Vector2
 var player : CharacterBody2D
 var direction = Vector2.ZERO
 
-var near_player = false
-var knocked_back = false
-
 func _ready() -> void:
 	#this line of code messes up the enemy trigger logic, as it overrides the global_position after it is set by the enemy trigger
 	#global_position = spawn_position
 	pass
 
 func _process(delta: float) -> void:
-	match state:
-		"flying":
-			if !is_instance_valid(player):
-				return
-			elif !knocked_back:
-				flying(player.global_position)
-				if velocity.x > 0:
-					$AnimatedSprite2D.flip_h = true
-					$CollisionShape2D.scale.x = -1
-					$RoninDetection.scale.x = -1
-					$HitDetection.scale.x = -1
-					$HitBox.scale.x = -1
-				elif velocity.x < 0:
-					$AnimatedSprite2D.flip_h = false
-					$CollisionShape2D.scale.x = 1
-					$RoninDetection.scale.x = 1
-					$HitDetection.scale.x = 1
-					$HitBox.scale.x = 1
-			$AnimatedSprite2D.play("flying")
-		"stinging":
-			set_hitbox($AnimatedSprite2D.frame in [2, 3, 4])
-			$AnimatedSprite2D.play("sting")
+	if !dying:
+		match state:
+			"flying":
+				if !is_instance_valid(player):
+					return
+				elif !knocked_back:
+					flying(player.global_position)
+					if velocity.x > 0:
+						$AnimatedSprite2D.flip_h = true
+						$CollisionShape2D.scale.x = -1
+						$RoninDetection.scale.x = -1
+						$HitDetection.scale.x = -1
+						$HitBox.scale.x = -1
+					elif velocity.x < 0:
+						$AnimatedSprite2D.flip_h = false
+						$CollisionShape2D.scale.x = 1
+						$RoninDetection.scale.x = 1
+						$HitDetection.scale.x = 1
+						$HitBox.scale.x = 1
+				$AnimatedSprite2D.play("flying")
+			"stinging":
+				set_hitbox($AnimatedSprite2D.frame in [2, 3, 4])
+				$AnimatedSprite2D.play("sting")
 			
 func _physics_process(delta):
+	velocity.y += gravity * delta
+	
 	if knocked_back:
 		velocity.x = knockback_velocity
 		if knockback_velocity < 0:
@@ -55,7 +55,7 @@ func _physics_process(delta):
 			velocity.x = 0
 			if state == "flying_pending":
 				state = "flying"
-	elif state == "flying":
+	elif !dying and state == "flying":
 		velocity = ((direction*speed) - velocity) * delta
 	else:
 		velocity.x = 0
@@ -102,4 +102,12 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 	knocked_back = true
 	
 	# take_damage declared in base_enemy_floor1, takes damage amount as argument
-	take_damage(1)
+	if take_damage(1):
+		dying = true
+		$AnimatedSprite2D.animation = "flying"
+		$AnimatedSprite2D.frame = 2
+		gravity = 200
+		$StingTimer.start(.5)
+		await $StingTimer.timeout
+		death()
+		

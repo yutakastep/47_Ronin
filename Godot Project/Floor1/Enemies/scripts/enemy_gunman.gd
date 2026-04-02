@@ -11,31 +11,28 @@ var player : CharacterBody2D
 var direction = Vector2.ZERO
 var yonder = 0
 
-var near_player = false
-var knocked_back = false
-
 func _ready() -> void:
 	super()
 	$ShootTimer.start(2)
 
 func _process(delta: float) -> void:
-	
-	match state:
-		"waiting":
-			if !is_instance_valid(player):
-				return
-			waiting(player.global_position)
-			if yonder < 0:
-				$AnimatedSprite2D.flip_h = true
-				$HitDetection.scale.x = -1
-			elif yonder > 0:
-				$AnimatedSprite2D.flip_h = false
-				$HitDetection.scale.x = 1
-		"shooting":
-			shoot($AnimatedSprite2D.flip_h, global_position)
-			state = "attacking"
-		"attacking":
-			$AnimatedSprite2D.play("shoot")
+	if !dying:
+		match state:
+			"waiting":
+				if !is_instance_valid(player):
+					return
+				waiting(player.global_position)
+				if yonder < 0:
+					$AnimatedSprite2D.flip_h = true
+					$HitDetection.scale.x = -1
+				elif yonder > 0:
+					$AnimatedSprite2D.flip_h = false
+					$HitDetection.scale.x = 1
+			"shooting":
+				shoot($AnimatedSprite2D.flip_h, global_position)
+				state = "attacking"
+			"attacking":
+				$AnimatedSprite2D.play("shoot")
 			
 func _physics_process(delta):
 	# Add gravity every frame
@@ -82,4 +79,8 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 	knocked_back = true
 	
 	# take_damage declared in base_enemy_floor1, takes damage amount as argument
-	take_damage(1)
+	if take_damage(1):
+		dying = true
+		$AnimatedSprite2D.play("death")
+		await $AnimatedSprite2D.animation_finished
+		death()

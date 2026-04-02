@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_40r68"]
 [ext_resource type="Texture2D" uid="uid://dvtol4iurh6ho" path="res://Floor1/Enemies/sprites/samurai/walking.png" id="2_yi7cw"]
 [ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/resources/turnip.tres" id="3_nbrsp"]
+[ext_resource type="Texture2D" uid="uid://dq8dih00qv6b" path="res://Floor1/Enemies/sprites/samurai/death.png" id="5_nbrsp"]
 
 [sub_resource type="Resource" id="Resource_hm22p"]
 script = ExtResource("2_40r68")
@@ -59,6 +60,18 @@ region = Rect2(256, 0, 64, 64)
 atlas = ExtResource("1_gddy4")
 region = Rect2(320, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5afn6"]
+atlas = ExtResource("5_nbrsp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb0bj"]
+atlas = ExtResource("5_nbrsp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6l3f"]
+atlas = ExtResource("5_nbrsp")
+region = Rect2(128, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2u4fq"]
 atlas = ExtResource("2_yi7cw")
 region = Rect2(0, 0, 64, 64)
@@ -107,6 +120,20 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5afn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb0bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6l3f")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -192,8 +219,8 @@ shape = SubResource("CapsuleShape2D_yi7cw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451966867]
 material = SubResource("ShaderMaterial_nbrsp")
 sprite_frames = SubResource("SpriteFrames_5afn6")
-animation = &"attack"
-frame = 5
+animation = &"death"
+frame = 2
 frame_progress = 1.0
 
 [node name="RoninDetection" type="Area2D" parent="." unique_id=1441799830]

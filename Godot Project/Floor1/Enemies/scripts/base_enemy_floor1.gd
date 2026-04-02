@@ -12,15 +12,20 @@ const PICKUP = preload("res://Items/item_pickup/ItemPickup.tscn")
 @export var max_health: int = 3
 var health: int
 
+var near_player = false
+var knocked_back = false
+var dying = false
+
 signal died(enemy)
 
 func _ready():
 	health = max_health
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int) -> bool:
 	health -= amount
 	if health <= 0:
-		death()
+		return true
+	return false
 
 func death() -> void:
 	died.emit(self)

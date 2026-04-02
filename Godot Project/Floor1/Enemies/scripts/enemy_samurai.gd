@@ -10,34 +10,32 @@ var spawn_position : Vector2
 var player : CharacterBody2D
 var direction = Vector2.ZERO
 
-var near_player = false
-var knocked_back = false
-
 func _ready() -> void:
 	#this line of code messes up the enemy trigger logic, as it overrides the global_position after it is set by the enemy trigger
 	#global_position = spawn_position
 	pass
 
 func _process(delta: float) -> void:
-	match state:
-		"walking":
-			if !is_instance_valid(player):
-				return
-			elif !knocked_back:
-				walking(player.global_position, delta)
-				if velocity.x < 0:
-					$AnimatedSprite2D.flip_h = true
-					$RoninDetection.scale.x = -1
-					$HitBox.scale.x = -1
-					$AnimatedSprite2D.play("walking")
-				elif velocity.x > 0:
-					$AnimatedSprite2D.flip_h = false
-					$RoninDetection.scale.x = 1
-					$HitBox.scale.x = 1
-					$AnimatedSprite2D.play("walking")
-		"attacking":
-			set_hitbox(0 < $AnimatedSprite2D.frame and $AnimatedSprite2D.frame < 4)
-			$AnimatedSprite2D.play("attack")
+	if !dying:
+		match state:
+			"walking":
+				if !is_instance_valid(player):
+					return
+				elif !knocked_back:
+					walking(player.global_position, delta)
+					if velocity.x < 0:
+						$AnimatedSprite2D.flip_h = true
+						$RoninDetection.scale.x = -1
+						$HitBox.scale.x = -1
+						$AnimatedSprite2D.play("walking")
+					elif velocity.x > 0:
+						$AnimatedSprite2D.flip_h = false
+						$RoninDetection.scale.x = 1
+						$HitBox.scale.x = 1
+						$AnimatedSprite2D.play("walking")
+			"attacking":
+				set_hitbox(0 < $AnimatedSprite2D.frame and $AnimatedSprite2D.frame < 4)
+				$AnimatedSprite2D.play("attack")
 			
 func _physics_process(delta):
 	#print(global_position)
@@ -56,7 +54,7 @@ func _physics_process(delta):
 			velocity.x = 0
 			if state == "walking_pending":
 				state = "walking"
-	elif state == "walking":
+	elif !dying and state == "walking":
 		velocity.x = ((direction.x*speed) - velocity.x) * delta * .75
 	else:
 		velocity.x = 0
@@ -104,4 +102,8 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 	knocked_back = true
 	
 	# take_damage declared in base_enemy_floor1, takes damage amount as argument
-	take_damage(1)
+	if take_damage(1):
+		dying = true
+		$AnimatedSprite2D.play("death")
+		await $AnimatedSprite2D.animation_finished
+		death()

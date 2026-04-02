@@ -179,9 +179,7 @@ shape = SubResource("CapsuleShape2D_yi7cw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451966867]
 material = SubResource("ShaderMaterial_nbrsp")
 sprite_frames = SubResource("SpriteFrames_5afn6")
-animation = &"sting"
-frame = 3
-frame_progress = 0.57472
+animation = &"flying"
 
 [node name="StingTimer" type="Timer" parent="." unique_id=1028163978]
 

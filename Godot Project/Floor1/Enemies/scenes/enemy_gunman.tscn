@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://xy6amuexubki" path="res://Floor1/Enemies/sprites/gunman/shoot.png" id="2_7bffi"]
 [ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_a1jsx"]
 [ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken.tres" id="3_6xmr7"]
+[ext_resource type="Texture2D" uid="uid://dbg28dvqmiurt" path="res://Floor1/Enemies/sprites/gunman/death.png" id="4_6xmr7"]
 
 [sub_resource type="Resource" id="Resource_thh2x"]
 script = ExtResource("2_a1jsx")
@@ -33,6 +34,18 @@ resource_local_to_scene = true
 shader = SubResource("Shader_kiiyk")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_on = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgo7k"]
+atlas = ExtResource("4_6xmr7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ylsq"]
+atlas = ExtResource("4_6xmr7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tt5c"]
+atlas = ExtResource("4_6xmr7")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds1w7"]
 atlas = ExtResource("2_7bffi")
@@ -76,6 +89,20 @@ region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5afn6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgo7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ylsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tt5c")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ds1w7")
@@ -167,7 +194,9 @@ shape = SubResource("CapsuleShape2D_yi7cw")
 material = SubResource("ShaderMaterial_nbrsp")
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_5afn6")
-animation = &"shoot"
+animation = &"death"
+frame = 2
+frame_progress = 1.0
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1028163978]
 
