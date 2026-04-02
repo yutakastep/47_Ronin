@@ -22,6 +22,7 @@ PauseMenu="*uid://b3phf0po0ogvr"
 SaveManager="*uid://cnhe5sod5iwdw"
 PlayerManager="*uid://clmcb38j63xqe"
 GameEvents="*uid://o1x0pnwxuvjr"
+PlayerHud="*uid://d08e1wlogjkrp"
 
 [display]
 
