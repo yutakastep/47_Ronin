@@ -40,7 +40,6 @@ func spawn_ronin():
 	camera.offset = Vector2(0, -20)
 	camera.limit_left = -240
 	camera.limit_right = dimensions[0].x
-	camera.zoom = Vector2(3.5, 3.5)
 	camera.make_current()
 	#print("Ronin Spawn? ", dimensions[1])
 	current_ronin.speed = 200
