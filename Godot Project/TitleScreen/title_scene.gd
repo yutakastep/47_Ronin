@@ -8,6 +8,7 @@ extends Node2D
 @onready var button_intro = $CanvasLayer/Control/ButtonIntro
 
 func _ready():
+	PlayerHud.visible = false
 	
 	set_title_screen()
 	go_to_credits()
@@ -20,6 +21,7 @@ func set_title_screen():
 	pass
 
 func start_game():
+	PlayerHud.visible = true
 	get_tree().change_scene_to_file("res://Floor1/scenes/floor1.tscn")
 
 func go_to_intro():
