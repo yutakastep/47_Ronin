@@ -8,7 +8,9 @@ var ronins = []
 var rng = RandomNumberGenerator.new()
 
 var ronin_index: int = 1
+var coins: int = 0
 signal ronin_change(index)
+signal coins_changed(value)
 
 func _ready():
 	ronins = load_ronins("res://Ronins/scenes/47")
@@ -42,3 +44,15 @@ func load_ronins(path: String) -> Array:
 func _on_player_died(ronin):
 	ronin_index += 1
 	ronin_change.emit(ronin_index)
+
+func add_coins(amount: int) -> void:
+	coins += amount
+	coins_changed.emit(coins)
+
+func spend_coins(amount: int) -> bool:
+	if coins < amount:
+		return false
+	
+	coins -= amount
+	coins_changed.emit(coins)
+	return true
