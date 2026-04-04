@@ -416,6 +416,7 @@ _data = {
 collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_b5d8u")
+body = 2
 head = 2
 color = 1
 speed = null

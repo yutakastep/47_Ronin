@@ -48,14 +48,24 @@ func apply_variant():
 	var sheet_map = {
 		"breathing":   load(base_path + "breathing.png"),
 		"walking":   load(base_path + "walking.png"),
-		"attack_one": load(base_path + "attack.png"),
-		"attack_two": load(base_path + "attack.png"),
-		"attack_three": load(base_path + "attack.png"),  
+		"attack_one": load(base_path + "attacking.png"),
+		"attack_two": load(base_path + "attacking.png"),
+		"attack_three": load(base_path + "attacking.png"),  
 		"attack_up": load(base_path + "up_attack.png"),
 		"jump":   load(base_path + "jump.png"),
-		"sheath":   load(base_path + "attack.png"),
+		"sheath":   load(base_path + "attacking.png"),
 		"death":  load(base_path + "death.png"),
 	}
+
+	var frames = $AnimatedSprite2D.sprite_frames
+	for anim_name in frames.get_animation_names():
+		for i in frames.get_frame_count(anim_name):
+			var atlas = frames.get_frame_texture(anim_name, i)
+			if atlas == null:
+				continue
+			if not atlas is AtlasTexture:
+				continue
+			atlas.atlas = sheet_map.get(anim_name)
 
 func _ready() -> void:
 	#PlayerManager.player = self

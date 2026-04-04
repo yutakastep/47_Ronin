@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caayyudjk8h8r"
-path="res://.godot/imported/up_attack.png-098f1eb545f0146a0e34298ace81249e.ctex"
+path="res://.godot/imported/up-attack.png-49446d89e9b65b85b2057fbaedd60819.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ronins/sprites/Kunai/Hair/Purple/up_attack.png"
-dest_files=["res://.godot/imported/up_attack.png-098f1eb545f0146a0e34298ace81249e.ctex"]
+source_file="res://Ronins/sprites/Kunai/Hair/Purple/up-attack.png"
+dest_files=["res://.godot/imported/up-attack.png-49446d89e9b65b85b2057fbaedd60819.ctex"]
 
 [params]
 

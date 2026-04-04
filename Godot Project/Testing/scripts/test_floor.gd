@@ -33,7 +33,7 @@ func spawn_ronin():
 	current_ronin.tree_exiting.connect(_on_ronin_death)
 	
 func spawn_enemy():
-	var enemy = gunman.instantiate()
+	var enemy = samurai.instantiate()
 	enemy.spawn_position = enemy_spawn
 	enemy.player = current_ronin
 	add_child.call_deferred(enemy)
