@@ -33,6 +33,7 @@ func show_pause_menu():
 	visible = true
 	is_paused = true
 	shown.emit()
+	PlayerHud.visible = false
 	# button_save.grab_focus()
 	# need above for controller, currently not implementing
 
@@ -42,6 +43,7 @@ func hide_pause_menu():
 	visible = false
 	is_paused = false
 	hidden.emit()
+	PlayerHud.visible = true
 
 
 

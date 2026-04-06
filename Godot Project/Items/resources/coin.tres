@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b7xcjtf35efb3"]
+
+[ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_pobrt"]
+[ext_resource type="Script" uid="uid://dxflhilpfgg2i" path="res://Items/item_effects/item_effect_coin.gd" id="2_pobrt"]
+[ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="3_vxws5"]
+[ext_resource type="Texture2D" uid="uid://dibe7t61taq3r" path="res://Items/sprites/coin_single.png" id="4_pobrt"]
+
+[sub_resource type="Resource" id="Resource_xkuv8"]
+script = ExtResource("2_pobrt")
+metadata/_custom_type_script = "uid://dxflhilpfgg2i"
+
+[resource]
+script = ExtResource("3_vxws5")
+name = "Coin"
+description = "Coin
+Used for gacha in the homebase."
+texture = ExtResource("4_pobrt")
+effects = Array[ExtResource("1_pobrt")]([SubResource("Resource_xkuv8")])
+metadata/_custom_type_script = "uid://cnmrwlgwnvonb"
