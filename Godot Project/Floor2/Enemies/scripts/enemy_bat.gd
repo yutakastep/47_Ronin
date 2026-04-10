@@ -1,7 +1,7 @@
-class_name EnemyWasp extends Floor1Enemies
+class_name EnemyBat extends Floor1Enemies
 
 @onready var state = "flying"
-@onready var speed = 30
+@onready var speed = 40
 @onready var gravity = 0
 @onready var knockback_velocity = 0
 
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 						$HitBox.scale.x = 1
 				$AnimatedSprite2D.play("flying")
 			"stinging":
-				set_hitbox($AnimatedSprite2D.frame in [2, 3, 4])
+				set_hitbox($AnimatedSprite2D.frame in [3, 4, 5])
 				$AnimatedSprite2D.play("sting")
 			
 func _physics_process(delta):

@@ -59,7 +59,7 @@ func apply_variant():
 		"attack_up": load(base_path + "up-attack.png"),
 		"jump":   load(base_path + "jump.png"),
 		"sheath":   load(base_path + "attacking.png"),
-		"realod": load(base_path + "attacking.png"),
+		"reload": load(base_path + "attacking.png"),
 		"death":  load(base_path + "death.png")
 	}
 	

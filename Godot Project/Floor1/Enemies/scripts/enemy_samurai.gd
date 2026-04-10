@@ -60,7 +60,7 @@ func _physics_process(delta):
 		velocity.x = 0
 	move_and_slide()
 
-func walking(target, delta):
+func walking(target, _delta):
 	direction.x = (target.x - global_position.x)
 
 func set_hitbox(on):

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c2p0pr1tmb0rs"]
+
+[ext_resource type="Script" uid="uid://bav38fxsjex2f" path="res://misc/scripts/bullet.gd" id="1_e5835"]
+[ext_resource type="Texture2D" uid="uid://f0afbxh2wih5" path="res://Floor2/Enemies/sprites/nihonzaru/poop.png" id="2_e5835"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66qat"]
+size = Vector2(6, 2)
+
+[node name="Poop" type="CharacterBody2D" unique_id=1926306809]
+collision_layer = 68
+collision_mask = 3
+script = ExtResource("1_e5835")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=129826753]
+texture = ExtResource("2_e5835")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=652647657]
+collision_layer = 64
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=120390716]
+shape = SubResource("RectangleShape2D_66qat")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

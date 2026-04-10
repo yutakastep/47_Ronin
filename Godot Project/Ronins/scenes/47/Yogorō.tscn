@@ -425,7 +425,7 @@ shape = SubResource("CapsuleShape2D_q0hru")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 material = SubResource("ShaderMaterial_yygvq")
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"death"
+animation = &"reload"
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1681577053]
 

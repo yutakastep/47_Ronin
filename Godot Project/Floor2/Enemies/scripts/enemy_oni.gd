@@ -1,8 +1,8 @@
-class_name EnemyWasp extends Floor1Enemies
+class_name EnemyOni extends Floor1Enemies
 
-@onready var state = "flying"
-@onready var speed = 30
-@onready var gravity = 0
+@onready var state = "walking"
+@onready var speed = 15
+@onready var gravity = 500
 @onready var knockback_velocity = 0
 
 
@@ -18,29 +18,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !dying:
 		match state:
-			"flying":
+			"walking":
 				if !is_instance_valid(player):
 					return
 				elif !knocked_back:
-					flying(player.global_position)
-					if velocity.x > 0:
+					walking(player.global_position, delta)
+					if velocity.x < 0:
 						$AnimatedSprite2D.flip_h = true
-						$CollisionShape2D.scale.x = -1
 						$RoninDetection.scale.x = -1
-						$HitDetection.scale.x = -1
 						$HitBox.scale.x = -1
-					elif velocity.x < 0:
+						$AnimatedSprite2D.play("walking")
+					elif velocity.x > 0:
 						$AnimatedSprite2D.flip_h = false
-						$CollisionShape2D.scale.x = 1
 						$RoninDetection.scale.x = 1
-						$HitDetection.scale.x = 1
 						$HitBox.scale.x = 1
-				$AnimatedSprite2D.play("flying")
-			"stinging":
-				set_hitbox($AnimatedSprite2D.frame in [2, 3, 4])
-				$AnimatedSprite2D.play("sting")
+						$AnimatedSprite2D.play("walking")
+			"attacking":
+				set_hitbox($AnimatedSprite2D.frame in [4, 5, 6])
+				$AnimatedSprite2D.play("attack")
 			
 func _physics_process(delta):
+	#print(global_position)
+	# Add gravity every frame
 	velocity.y += gravity * delta
 	
 	if knocked_back:
@@ -53,16 +52,16 @@ func _physics_process(delta):
 		if -2 < knockback_velocity && knockback_velocity < 2:
 			knocked_back = false
 			velocity.x = 0
-			if state == "flying_pending":
-				state = "flying"
-	elif !dying and state == "flying":
-		velocity = ((direction*speed) - velocity) * delta
+			if state == "walking_pending":
+				state = "walking"
+	elif !dying and state == "walking":
+		velocity.x = ((direction.x*speed) - velocity.x) * delta * .75
 	else:
 		velocity.x = 0
 	move_and_slide()
 
-func flying(target):
-	direction = (target - global_position)
+func walking(target, delta):
+	direction.x = (target.x - global_position.x)
 
 func set_hitbox(on):
 	$HitBox.monitoring = on
@@ -72,27 +71,28 @@ func set_hitbox(on):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	state = "waiting"
 	near_player = true
-	$StingTimer.start(.15)
+	$AttackTimer.start(.15)
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	near_player = false
 
+
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if state == "stinging":
+	if state == "attacking":
 		if near_player:
 			state = "waiting"
-			$StingTimer.start(.15)
+			$AttackTimer.start(.15)
 		else:
 			if knocked_back:
-				state = "flying_pending"
+				state = "walking_pending"
 			else:
-				state = "flying"
+				state = "walking"
 
 
-func _on_sting_timer_timeout() -> void:
-	$StingTimer.stop()
+func _on_attack_timer_timeout() -> void:
+	$AttackTimer.stop()
 	if state == "waiting":
-		state = "stinging"
+		state = "attacking"
 
 func _on_hit_detection_area_entered(area: Area2D) -> void:
 	print("enemy hit")
@@ -104,10 +104,6 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 	# take_damage declared in base_enemy_floor1, takes damage amount as argument
 	if take_damage(1):
 		dying = true
-		$AnimatedSprite2D.animation = "flying"
-		$AnimatedSprite2D.frame = 2
-		gravity = 200
-		$StingTimer.start(.5)
-		await $StingTimer.timeout
+		$AnimatedSprite2D.play("death")
+		await $AnimatedSprite2D.animation_finished
 		death()
-		
