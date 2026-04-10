@@ -28,7 +28,7 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit()
 	
-func _on_ronin_death(ronin):
+func _on_ronin_death(_ronin):
 	ronin_spawn = current_ronin.global_position
 	spawn_ronin()
 	GameEvents.ronin_death.emit()

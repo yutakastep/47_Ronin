@@ -67,7 +67,7 @@ func cache_all_rooms():
 		}
 		room_node.free()
 
-func generate_grid(x, y, section, prior):
+func generate_grid(x, y, section, _prior):
 	if Vector2(x, y) == end_coords:
 		end_found = true
 	if section == "midair" and y != 0:

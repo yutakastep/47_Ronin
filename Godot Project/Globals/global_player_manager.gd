@@ -39,6 +39,6 @@ func load_ronins(path: String) -> Array:
 			file_name = dir.get_next()
 	return files
 
-func _on_player_died(ronin):
+func _on_player_died(_ronin):
 	ronin_index += 1
 	ronin_change.emit(ronin_index)
