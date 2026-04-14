@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dk6vaf1l8o3n6"]
+
+[ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_72ocq"]
+[ext_resource type="Script" uid="uid://d3ea67cgl1uyi" path="res://Items/item_effects/item_effect_health.gd" id="2_yy2og"]
+[ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="3_u5pkm"]
+[ext_resource type="Texture2D" uid="uid://cjmn72ey7j433" path="res://Items/sprites/Apple.png" id="4_3ms54"]
+
+[sub_resource type="Resource" id="Resource_eyubc"]
+script = ExtResource("2_yy2og")
+metadata/_custom_type_script = "uid://d3ea67cgl1uyi"
+
+[resource]
+script = ExtResource("3_u5pkm")
+name = "Apple"
+description = "Juicy, crunchy apple.
+Gives you bonus health."
+texture = ExtResource("4_3ms54")
+effects = Array[ExtResource("1_72ocq")]([SubResource("Resource_eyubc")])
+metadata/_custom_type_script = "uid://cnmrwlgwnvonb"

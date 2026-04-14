@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cybk28nk3bo37" path="res://Floor1/Enemies/scripts/enemy_samurai.gd" id="1_yi7cw"]
 [ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_40r68"]
 [ext_resource type="Texture2D" uid="uid://dvtol4iurh6ho" path="res://Floor1/Enemies/sprites/samurai/walking.png" id="2_yi7cw"]
-[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken.tres" id="4_5om2h"]
+[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken1.tres" id="4_5om2h"]
 [ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="4_hm22p"]
 [ext_resource type="Texture2D" uid="uid://dq8dih00qv6b" path="res://Floor1/Enemies/sprites/samurai/death.png" id="5_nbrsp"]
 

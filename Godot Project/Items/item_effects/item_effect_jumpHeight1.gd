@@ -1,7 +1,7 @@
-class_name ItemEffectJumpHeight extends ItemEffect
+class_name ItemEffectJumpHeight1 extends ItemEffect
 # extend any item effect and duplicate this format
 
-@export var jumpHeight_inc_amt: int = 100
+@export var jumpHeight_inc_amt: int = 50
 @export var sound: AudioStream
 
 func use():

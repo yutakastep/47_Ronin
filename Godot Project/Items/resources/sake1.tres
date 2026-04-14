@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://8kj34h77uwg4"]
 
 [ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_ljyb2"]
-[ext_resource type="Script" uid="uid://cec1vcxdiry4r" path="res://Items/item_effects/item_effect_attackSpeed.gd" id="2_b3f88"]
+[ext_resource type="Script" uid="uid://cec1vcxdiry4r" path="res://Items/item_effects/item_effect_attackSpeed1.gd" id="2_8u531"]
 [ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="2_oyi7v"]
 [ext_resource type="Texture2D" uid="uid://k073xps1y6jg" path="res://Items/sprites/Saki.png" id="4_oyi7v"]
 
 [sub_resource type="Resource" id="Resource_wcesm"]
-script = ExtResource("2_b3f88")
+script = ExtResource("2_8u531")
 metadata/_custom_type_script = "uid://cec1vcxdiry4r"
 
 [resource]

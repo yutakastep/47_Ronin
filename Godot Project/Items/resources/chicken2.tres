@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://do8bb7pl8r35d"]
+
+[ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_q54aw"]
+[ext_resource type="Script" uid="uid://c2m57y0yc4vtl" path="res://Items/item_effects/item_effect_attackSpeed2.gd" id="2_q54aw"]
+[ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="3_j8om8"]
+[ext_resource type="Texture2D" uid="uid://cm0ctt0rio5hs" path="res://Items/sprites/ChickenLeg.png" id="4_388kx"]
+
+[sub_resource type="Resource" id="Resource_g4rb8"]
+script = ExtResource("2_q54aw")
+metadata/_custom_type_script = "uid://c2m57y0yc4vtl"
+
+[resource]
+script = ExtResource("3_j8om8")
+name = "Chicken"
+description = "A juicy, meaty leg. 
+Increases movement speed."
+texture = ExtResource("4_388kx")
+effects = Array[ExtResource("1_q54aw")]([SubResource("Resource_g4rb8")])
+metadata/_custom_type_script = "uid://cnmrwlgwnvonb"

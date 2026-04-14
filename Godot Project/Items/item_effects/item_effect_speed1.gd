@@ -1,7 +1,7 @@
-class_name ItemEffectSpeed extends ItemEffect
+class_name ItemEffectSpeed1 extends ItemEffect
 # extend any item effect and duplicate this format
 
-@export var spd_inc_amt: int = 50
+@export var spd_inc_amt: int = 25
 @export var sound: AudioStream
 
 func use():
