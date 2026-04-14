@@ -44,6 +44,8 @@ func load_ronins(path: String) -> Array:
 func _on_player_died(_ronin):
 	ronin_index -= 1
 	ronin_change.emit(ronin_index)
+	if(ronin_index == 0):
+		get_tree().change_scene_to_file("res://Homebase/scenes/homebase.tscn")
 
 func add_coins(amount: int) -> void:
 	coins += amount
