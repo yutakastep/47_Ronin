@@ -27,3 +27,5 @@ tile_map_data = PackedByteArray("AAD4//v/AQACAAMAAAD4//z/AQACAAQAAAD4//3/AQACAAQ
 
 [node name="RoomTrigger" parent="." unique_id=1894688382 instance=ExtResource("5_axfq7")]
 position = Vector2(-1, 50)
+
+[editable path="RoomTrigger"]

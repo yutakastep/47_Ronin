@@ -1,7 +1,10 @@
 [gd_scene format=4 uid="uid://k20ldmd82usj"]
 
+[ext_resource type="PackedScene" uid="uid://78ce0kpxfyid" path="res://Floor1/Triggers/scenes/enemy_trigger.tscn" id="3_33fa0"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="3_3577t"]
+[ext_resource type="PackedScene" uid="uid://c02di5oj2onfy" path="res://Floor2/Enemies/scenes/enemy_bat.tscn" id="4_3577t"]
 [ext_resource type="PackedScene" uid="uid://clbd8sqhvoayy" path="res://Floor2/scenes/floor2_tileset.tscn" id="4_vwi1m"]
+[ext_resource type="PackedScene" uid="uid://dsubpwt421fxn" path="res://Floor2/Enemies/scenes/enemy_monkey.tscn" id="5_vwi1m"]
 
 [node name="Room02" type="Node2D" unique_id=1932579217]
 
@@ -24,3 +27,18 @@ tile_map_data = PackedByteArray("AADy/wUAAQABAAAAAADy/wYAAQABAAAAAADz/wYAAQACAAA
 [node name="Floor2Tileset2" parent="." unique_id=2008535128 instance=ExtResource("4_vwi1m")]
 z_index = 1
 tile_map_data = PackedByteArray("AAD4//v/AQACAAMAAAD4//z/AQACAAQAAAD4//3/AQACAAQAAAD4//7/AQACAAQAAAD4////AQACAAQAAAD4/wAAAQACAAQAAAD4/wEAAQACAAQAAAD4/wIAAQACAAQAAAD4/wMAAQACAAQAAADz//v/AQACAAMAAADz//z/AQACAAQAAADz//3/AQACAAQAAADz//7/AQACAAQAAADz////AQACAAQAAADz/wAAAQACAAQAAADz/wEAAQACAAQAAADz/wIAAQACAAQAAADz/wMAAQACAAQAAAD9//v/AQADAAMAAAD9//z/AQADAAMAAAD9//3/AQADAAQAAAD9//7/AQADAAQAAAD9////AQADAAQAAAD9/wAAAQADAAQAAAD9/wEAAQADAAQAAAD9/wIAAQADAAQAAAD9/wMAAQADAAQAAAD0//v/AQABAAMAAAD1//v/AQABAAMAAAD2//v/AQABAAMAAAD3//v/AQABAAMAAADy//v/AQABAAMAAADx//v/AQABAAMAAAD5//v/AQABAAMAAAD6//v/AQABAAMAAAD7//v/AQABAAMAAAD8//v/AQABAAMAAAD+//v/AQABAAMAAAD///v/AQABAAMAAAAAAPv/AQABAAMAAAABAPv/AQABAAMAAAACAPv/AQAAAAMAAAADAPv/AQABAAMAAAAEAPv/AQABAAMAAAAFAPv/AQABAAMAAAAGAPv/AQABAAMAAAAHAPv/AQACAAMAAAAIAPv/AQABAAMAAAAJAPv/AQABAAMAAAAKAPv/AQABAAMAAAALAPv/AQABAAMAAAAMAPv/AQADAAMAAAACAPz/AQAAAAQAAAACAP3/AQAAAAQAAAACAP7/AQAAAAQAAAACAP//AQAAAAQAAAACAAAAAQAAAAQAAAACAAEAAQAAAAQAAAACAAIAAQAAAAQAAAACAAMAAQAAAAQAAAAHAPz/AQACAAQAAAAHAP3/AQACAAQAAAAHAP7/AQACAAQAAAAHAP//AQACAAQAAAAHAAAAAQACAAQAAAAHAAEAAQACAAQAAAAHAAIAAQACAAQAAAAHAAMAAQACAAQAAAAMAPz/AQADAAQAAAAMAP3/AQADAAQAAAAMAP7/AQADAAQAAAAMAP//AQADAAQAAAAMAAAAAQADAAQAAAAMAAEAAQADAAQAAAAMAAIAAQADAAQAAAAMAAMAAQADAAQAAAA=")
+
+[node name="EnemyTrigger" parent="." unique_id=1541612044 instance=ExtResource("3_33fa0")]
+enemy_scene = ExtResource("4_3577t")
+
+[node name="Marker2D" parent="EnemyTrigger" index="1" unique_id=193733582]
+position = Vector2(-214, -68)
+
+[node name="EnemyTrigger2" parent="." unique_id=185937305 instance=ExtResource("3_33fa0")]
+enemy_scene = ExtResource("5_vwi1m")
+
+[node name="Marker2D" parent="EnemyTrigger2" index="1" unique_id=193733582]
+position = Vector2(161, 46)
+
+[editable path="EnemyTrigger"]
+[editable path="EnemyTrigger2"]

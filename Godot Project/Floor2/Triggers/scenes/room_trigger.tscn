@@ -6,6 +6,8 @@
 size = Vector2(25, 28)
 
 [node name="RoomTrigger" type="Area2D" unique_id=1894688382]
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1_rixub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471335823]

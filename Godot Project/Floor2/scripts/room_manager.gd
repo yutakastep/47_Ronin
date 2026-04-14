@@ -172,11 +172,15 @@ func room_generation() -> Array:
 			var curr = grid_check_queue.pop_front()
 			var x = curr.x
 			var y = curr.y
-			var directions = [[x, y-1, "top"], [x+1, y, "right"], [x, y+1, "bottom"], [x-1, y, "left"]]
+			print(Vector2(x, y))
+			var directions = [[x, y-1, "top", "bottom"], [x+1, y, "right", "left"], [x, y+1, "bottom", "top"], [x-1, y, "left", "right"]]
 			for pairing in directions:
-				if pairing[0] >= 0 and pairing[1] >= 0 and !visited.has(Vector2(pairing[0], pairing[1])) and grid[y][x].get_node("room_info").get(pairing[2]):
+				if pairing[0] >= 0 and pairing[1] >= 0 and !visited.has(Vector2(pairing[0], pairing[1])) and grid[y][x].get_node("room_info").get(pairing[2]) and grid[pairing[1]][pairing[0]].get_node("room_info").get(pairing[3]):
 					visited.push_back(Vector2(pairing[0], pairing[1]))
 					grid_check_queue.push_back(Vector2(pairing[0], pairing[1]))
+					#print(Vector2(pairing[0], pairing[1]))
+		print(start_end_location[1])
+		print(visited)
 	GameEvents.next_floor_level = end_coords.y
 	
 	for row in range(0, grid_h):

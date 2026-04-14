@@ -212,7 +212,7 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 		knocked_back = true
 		
 		# take_damage declared in base_ronin, takes damage amount as argument
-		if take_damage(1):
+		if take_damage(1) and !dying:
 			dying = true
 			$AnimatedSprite2D.play("death")
 			await $AnimatedSprite2D.animation_finished
