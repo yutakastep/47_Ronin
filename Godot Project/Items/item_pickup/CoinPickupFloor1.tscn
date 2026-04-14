@@ -1,12 +1,14 @@
-[gd_scene format=3 uid="uid://t83i38debqwp"]
+[gd_scene format=3 uid="uid://6y7p6i7taemc"]
 
-[ext_resource type="Script" uid="uid://dka25cx2jdj1h" path="res://Items/item_pickup/coin_pickup.gd" id="1_qbai2"]
-[ext_resource type="Texture2D" uid="uid://dibe7t61taq3r" path="res://Items/sprites/coin_single.png" id="2_2fkgd"]
+[ext_resource type="Script" uid="uid://dka25cx2jdj1h" path="res://Items/item_pickup/coin_pickup.gd" id="1_yvlqm"]
+[ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="2_0avu8"]
+[ext_resource type="Texture2D" uid="uid://dibe7t61taq3r" path="res://Items/sprites/coin_single.png" id="2_v4nx0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vggup"]
 
 [node name="CoinPickup" type="Node2D" unique_id=1427862309]
-script = ExtResource("1_qbai2")
+script = ExtResource("1_yvlqm")
+item_data = ExtResource("2_0avu8")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1627022383]
 collision_layer = 3
@@ -16,6 +18,6 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_vggup")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=244987443]
-texture = ExtResource("2_2fkgd")
+texture = ExtResource("2_v4nx0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2114283042]

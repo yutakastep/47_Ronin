@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dknqlsqnmhhvf" path="res://Floor1/sprites/tile_special_00.png" id="3_50xyf"]
 [ext_resource type="Texture2D" uid="uid://cuqrtaiefaiqd" path="res://Floor1/sprites/tile_map_bg_02.png" id="4_5y0sg"]
 [ext_resource type="PackedScene" uid="uid://b1rthxnb77k8c" path="res://misc/scenes/room_info.tscn" id="5_1ybjc"]
+[ext_resource type="PackedScene" uid="uid://t83i38debqwp" path="res://Items/item_pickup/CoinPickup.tscn" id="6_qbupb"]
+[ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="7_os02p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qydqc"]
 texture = ExtResource("1_a4brw")
@@ -194,3 +196,7 @@ tile_set = SubResource("TileSet_47ang")
 left = true
 right = true
 section = "earth"
+
+[node name="CoinPickup" parent="." unique_id=1427862309 instance=ExtResource("6_qbupb")]
+position = Vector2(-8, 42)
+item_data = ExtResource("7_os02p")

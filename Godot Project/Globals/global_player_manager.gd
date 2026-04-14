@@ -7,7 +7,7 @@ var player
 var ronins = []
 var rng = RandomNumberGenerator.new()
 
-var ronin_index: int = 1
+var ronin_index: int = 47
 var coins: int = 0
 signal ronin_change(index)
 signal coins_changed(value)
@@ -42,7 +42,7 @@ func load_ronins(path: String) -> Array:
 	return files
 
 func _on_player_died(_ronin):
-	ronin_index += 1
+	ronin_index -= 1
 	ronin_change.emit(ronin_index)
 
 func add_coins(amount: int) -> void:

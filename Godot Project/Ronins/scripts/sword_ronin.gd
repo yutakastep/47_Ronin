@@ -216,3 +216,4 @@ func _on_hit_detection_area_entered(area: Area2D) -> void:
 			dying = true
 			$AnimatedSprite2D.play("death")
 			await $AnimatedSprite2D.animation_finished
+			death()
