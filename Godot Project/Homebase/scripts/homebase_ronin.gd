@@ -4,10 +4,7 @@ var moveable = true
 
 func _ready():
 	speed = 50
-	var frames = $AnimatedSprite2D.sprite_frames
-	for anim in frames.get_animation_names():
-		var tex = frames.get_frame_texture(anim, 0)
-		print(anim, " | ", tex, " | ", tex.get_class())
+	apply_variant()
 
 func _process(delta: float) -> void:
 	if velocity.x < 0:
