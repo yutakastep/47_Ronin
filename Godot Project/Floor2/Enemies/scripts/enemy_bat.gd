@@ -1,4 +1,4 @@
-class_name EnemyBat extends Floor1Enemies
+class_name EnemyBat extends Floor2Enemies
 
 @onready var state = "flying"
 @onready var speed = 40

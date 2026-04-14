@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://cec1vcxdiry4r"
 
 [resource]
 script = ExtResource("2_oyi7v")
-name = "Turnip"
+name = "Sake"
 description = "Ooh sake! Yummyyy
 Makes you attack faster."
 texture = ExtResource("4_oyi7v")

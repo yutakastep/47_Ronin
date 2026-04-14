@@ -2,12 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cjdr0whwkdvl7" path="res://Items/item_effects/item_effect.gd" id="1_ovoyb"]
 [ext_resource type="Script" uid="uid://cnmrwlgwnvonb" path="res://Items/scripts/item_data.gd" id="2_fnc8c"]
-[ext_resource type="Texture2D" uid="uid://cvhpffvvhlpp6" path="res://Items/sprites/Turnip.png" id="3_3wksx"]
+[ext_resource type="Script" uid="uid://d3ea67cgl1uyi" path="res://Items/item_effects/item_effect_health.gd" id="2_sbkf5"]
+[ext_resource type="Texture2D" uid="uid://cjmn72ey7j433" path="res://Items/sprites/Apple.png" id="4_jxmwu"]
+
+[sub_resource type="Resource" id="Resource_eyubc"]
+script = ExtResource("2_sbkf5")
+metadata/_custom_type_script = "uid://d3ea67cgl1uyi"
 
 [resource]
 script = ExtResource("2_fnc8c")
-name = "Turnip"
-description = "MMM delicious turnip
-Makes you jump higher."
-texture = ExtResource("3_3wksx")
+name = "Apple"
+description = "Juicy, crunchy apple.
+Gives you bonus health."
+texture = ExtResource("4_jxmwu")
+effects = Array[ExtResource("1_ovoyb")]([SubResource("Resource_eyubc")])
 metadata/_custom_type_script = "uid://cnmrwlgwnvonb"
