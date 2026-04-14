@@ -9,6 +9,8 @@
 [sub_resource type="Resource" id="Resource_rlrh0"]
 script = ExtResource("2_fo1l6")
 item = ExtResource("3_aq3qt")
+min_amount = 2
+max_amount = 2
 metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
