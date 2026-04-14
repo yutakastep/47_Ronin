@@ -22,7 +22,7 @@ func set_title_screen():
 
 func start_game():
 	PlayerHud.visible = true
-	get_tree().change_scene_to_file("res://Floor1/scenes/floor1.tscn")
+	get_tree().change_scene_to_file("res://Homebase/scenes/homebase.tscn")
 
 func go_to_intro():
 	button_intro.pressed.connect(intro)
