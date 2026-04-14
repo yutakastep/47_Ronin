@@ -7,6 +7,7 @@ extends Node2D
 @onready var oni = load("res://Floor2/Enemies/scenes/enemy_oni.tscn")
 @onready var monkey = load("res://Floor2/Enemies/scenes/enemy_monkey.tscn")
 @onready var bat = load("res://Floor2/Enemies/scenes/enemy_bat.tscn")
+@onready var boss = load("res://Floor2/Enemies/scenes/final_boss.tscn")
 
 var ronin_spawn = Vector2(10, 170)
 var enemy_spawn = Vector2(100, 170)
@@ -34,9 +35,9 @@ func load_ronins(path: String) -> Array:
 func spawn_ronin():
 	current_ronin  = PlayerManager.spawn_player(self, ronin_spawn)
 	current_ronin.tree_exiting.connect(_on_ronin_death)
-	
+
 func spawn_enemy():
-	var enemy = bat.instantiate()
+	var enemy = boss.instantiate()
 	enemy.spawn_position = enemy_spawn
 	enemy.player = current_ronin
 	add_child.call_deferred(enemy)

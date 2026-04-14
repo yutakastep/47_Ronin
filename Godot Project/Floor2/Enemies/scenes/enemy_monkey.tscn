@@ -187,6 +187,8 @@ material = SubResource("ShaderMaterial_nbrsp")
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_5afn6")
 animation = &"shoot"
+frame = 9
+frame_progress = 1.0
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1028163978]
 
