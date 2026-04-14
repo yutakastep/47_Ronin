@@ -4,20 +4,23 @@ extends Node
 const INVENTORY_DATA : InventoryData = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
 
 var player
-var ronins = []
+var unlocked_ronins = []
+var locked_ronins = []
 var rng = RandomNumberGenerator.new()
 
-var ronin_index: int = 47
-var coins: int = 0
+var max_ronin: int = 1
+var ronin_index: int = 1
+var coins: int = 1
 signal ronin_change(index)
 signal coins_changed(value)
 
 func _ready():
-	ronins = load_ronins("res://Ronins/scenes/47")
+	unlocked_ronins = load_ronins("res://Ronins/scenes/Unlocked Ronin")
+	locked_ronins = load_ronins("res://Ronins/scenes/Locked Ronin")
 	rng.randomize()
  
 func spawn_player(parent, spawn_position):
-	var scene = load(ronins.pick_random())
+	var scene = load(unlocked_ronins.pick_random())
 	print(scene)
 	player = scene.instantiate()
 	player.name = "Player"
@@ -45,8 +48,18 @@ func _on_player_died(_ronin):
 	ronin_index -= 1
 	ronin_change.emit(ronin_index)
 	if(ronin_index == 0):
+		reset_ronin()
 		get_tree().change_scene_to_file("res://Homebase/scenes/homebase.tscn")
+		
+func add_ronin():
+	ronin_index += 1
+	max_ronin = ronin_index
+	ronin_change.emit(ronin_index)
 
+func reset_ronin():
+	ronin_index = max_ronin
+	ronin_change.emit(ronin_index)
+	
 func add_coins(amount: int) -> void:
 	coins += amount
 	print("coins added")

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bx80oy4ki7k3w"]
 
-[ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://Ronins/scripts/sword_ronin.gd" id="1_rjvwp"]
-[ext_resource type="Shader" uid="uid://ct86xqawakua3" path="res://misc/scripts/hit_effect.gdshader" id="2_f8wff"]
-[ext_resource type="Texture2D" uid="uid://ccajs4vp16lox" path="res://Ronins/sprites/Spear/Helmet/Blue/death.png" id="3_sxx6e"]
+[ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://Ronins/scripts/sword_ronin.gd" id="1_q45fp"]
+[ext_resource type="Shader" uid="uid://ct86xqawakua3" path="res://misc/scripts/hit_effect.gdshader" id="2_gmba2"]
+[ext_resource type="Texture2D" uid="uid://ccajs4vp16lox" path="res://Ronins/sprites/Spear/Helmet/Blue/death.png" id="3_mv7qo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um34y"]
 resource_local_to_scene = true
-shader = ExtResource("2_f8wff")
+shader = ExtResource("2_gmba2")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_on = false
 
@@ -110,15 +110,15 @@ region = Rect2(32, 0, 32, 32)
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quv4f"]
-atlas = ExtResource("3_sxx6e")
+atlas = ExtResource("3_mv7qo")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37011"]
-atlas = ExtResource("3_sxx6e")
+atlas = ExtResource("3_mv7qo")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqasb"]
-atlas = ExtResource("3_sxx6e")
+atlas = ExtResource("3_mv7qo")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psopo"]
@@ -407,7 +407,7 @@ _data = {
 [node name="SwordRonin" type="CharacterBody2D" unique_id=1005983935 groups=["Player"]]
 collision_layer = 2
 collision_mask = 21
-script = ExtResource("1_rjvwp")
+script = ExtResource("1_q45fp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 material = SubResource("ShaderMaterial_um34y")

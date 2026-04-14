@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dujnbe11orx2b"]
+[gd_scene format=3 uid="uid://ikh5cdkrc561"]
 
 [ext_resource type="Script" uid="uid://dwi0lunh52baw" path="res://Ronins/scripts/kunai_ronin.gd" id="1_pcalo"]
 [ext_resource type="Shader" uid="uid://ct86xqawakua3" path="res://misc/scripts/hit_effect.gdshader" id="2_48kc7"]
