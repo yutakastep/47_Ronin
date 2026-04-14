@@ -1,4 +1,4 @@
-class_name EnemyOni extends Floor1Enemies
+class_name EnemyOni extends Floor2Enemies
 
 @onready var state = "walking"
 @onready var speed = 15

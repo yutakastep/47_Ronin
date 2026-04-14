@@ -4,18 +4,18 @@
 [ext_resource type="Script" uid="uid://cybk28nk3bo37" path="res://Floor1/Enemies/scripts/enemy_samurai.gd" id="1_yi7cw"]
 [ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_40r68"]
 [ext_resource type="Texture2D" uid="uid://dvtol4iurh6ho" path="res://Floor1/Enemies/sprites/samurai/walking.png" id="2_yi7cw"]
-[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/resources/turnip.tres" id="3_nbrsp"]
+[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/resources/chicken.tres" id="4_5om2h"]
 [ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="4_hm22p"]
 [ext_resource type="Texture2D" uid="uid://dq8dih00qv6b" path="res://Floor1/Enemies/sprites/samurai/death.png" id="5_nbrsp"]
-
-[sub_resource type="Resource" id="Resource_hm22p"]
-script = ExtResource("2_40r68")
-item = ExtResource("3_nbrsp")
-metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="Resource" id="Resource_5vyum"]
 script = ExtResource("2_40r68")
 item = ExtResource("4_hm22p")
+metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
+
+[sub_resource type="Resource" id="Resource_hm22p"]
+script = ExtResource("2_40r68")
+item = ExtResource("4_5om2h")
 metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
@@ -216,7 +216,7 @@ visibility_layer = 5
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_yi7cw")
-drops = Array[ExtResource("2_40r68")]([SubResource("Resource_hm22p"), SubResource("Resource_5vyum")])
+drops = Array[ExtResource("2_40r68")]([SubResource("Resource_5vyum"), SubResource("Resource_hm22p")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
 position = Vector2(0, 2)

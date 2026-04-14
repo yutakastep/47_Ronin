@@ -1,4 +1,4 @@
-class_name EnemyMonkey extends Floor1Enemies
+class_name EnemyMonkey extends Floor2Enemies
 
 @onready var state = "waiting"
 @onready var speed = 20

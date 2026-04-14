@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://b3cutak302vgt"]
 
 [ext_resource type="Script" uid="uid://bj47voen8f1t4" path="res://Floor2/Enemies/scripts/enemy_oni.gd" id="1_jmo6u"]
+[ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_w6vvw"]
+[ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="3_a4asf"]
+[ext_resource type="Resource" uid="uid://dwdwep1gxoftf" path="res://Items/resources/apple.tres" id="4_on2mj"]
 [ext_resource type="Texture2D" uid="uid://vgkh1yg4wfed" path="res://Floor2/Enemies/sprites/oni/attack.png" id="5_w6vvw"]
 [ext_resource type="Texture2D" uid="uid://donkxv0puulju" path="res://Floor2/Enemies/sprites/oni/death.png" id="6_a4asf"]
 [ext_resource type="Texture2D" uid="uid://btt454qntigvq" path="res://Floor2/Enemies/sprites/oni/walking.png" id="7_on2mj"]
+
+[sub_resource type="Resource" id="Resource_stkvu"]
+script = ExtResource("2_w6vvw")
+item = ExtResource("3_a4asf")
+min_amount = 2
+max_amount = 2
+metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
+
+[sub_resource type="Resource" id="Resource_bhd3n"]
+script = ExtResource("2_w6vvw")
+item = ExtResource("4_on2mj")
+metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
 radius = 5.0
@@ -217,6 +232,7 @@ visibility_layer = 5
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_jmo6u")
+drops = Array[ExtResource("2_w6vvw")]([SubResource("Resource_stkvu"), SubResource("Resource_bhd3n")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
 position = Vector2(0, 10)

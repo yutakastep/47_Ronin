@@ -3,18 +3,18 @@
 [ext_resource type="Script" uid="uid://bg80h4f4sohli" path="res://Floor1/Enemies/scripts/enemy_wasp.gd" id="1_y2xih"]
 [ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_5okx6"]
 [ext_resource type="Texture2D" uid="uid://b3f7haeiveljb" path="res://Floor1/Enemies/sprites/wasp/flying.png" id="2_y2xih"]
-[ext_resource type="Resource" uid="uid://8kj34h77uwg4" path="res://Items/resources/sake.tres" id="3_1cvf7"]
 [ext_resource type="Texture2D" uid="uid://cvco3najbjya0" path="res://Floor1/Enemies/sprites/wasp/sting.png" id="3_y2xih"]
 [ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="4_1cvf7"]
-
-[sub_resource type="Resource" id="Resource_wmb16"]
-script = ExtResource("2_5okx6")
-item = ExtResource("3_1cvf7")
-metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
+[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/resources/turnip.tres" id="5_qna5m"]
 
 [sub_resource type="Resource" id="Resource_41r6l"]
 script = ExtResource("2_5okx6")
 item = ExtResource("4_1cvf7")
+metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
+
+[sub_resource type="Resource" id="Resource_wmb16"]
+script = ExtResource("2_5okx6")
+item = ExtResource("5_qna5m")
 metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
@@ -174,7 +174,7 @@ visibility_layer = 5
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_y2xih")
-drops = Array[ExtResource("2_5okx6")]([SubResource("Resource_wmb16"), SubResource("Resource_41r6l")])
+drops = Array[ExtResource("2_5okx6")]([SubResource("Resource_41r6l"), SubResource("Resource_wmb16")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
 position = Vector2(-2, 2)

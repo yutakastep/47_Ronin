@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://dsubpwt421fxn"]
 
 [ext_resource type="Script" uid="uid://deld3qkolahw7" path="res://Floor2/Enemies/scripts/enemy_monkey.gd" id="1_xocqd"]
+[ext_resource type="Script" uid="uid://b2qi8t0xlugkx" path="res://Floor1/Enemies/scripts/item_drop_data.gd" id="2_fo1l6"]
+[ext_resource type="Resource" uid="uid://b7xcjtf35efb3" path="res://Items/resources/coin.tres" id="3_aq3qt"]
 [ext_resource type="Texture2D" uid="uid://ca7diwoqvrbsp" path="res://Floor2/Enemies/sprites/nihonzaru/attack.png" id="3_xocqd"]
 [ext_resource type="Texture2D" uid="uid://3bpw4p10mqf4" path="res://Floor2/Enemies/sprites/nihonzaru/death.png" id="5_aq3qt"]
+
+[sub_resource type="Resource" id="Resource_rlrh0"]
+script = ExtResource("2_fo1l6")
+item = ExtResource("3_aq3qt")
+min_amount = 2
+max_amount = 2
+metadata/_custom_type_script = "uid://b2qi8t0xlugkx"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
 radius = 9.0
@@ -177,6 +186,7 @@ position = Vector2(0, -2)
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_xocqd")
+drops = Array[ExtResource("2_fo1l6")]([SubResource("Resource_rlrh0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
 position = Vector2(0, 4)

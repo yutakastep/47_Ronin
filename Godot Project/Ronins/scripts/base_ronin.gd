@@ -56,3 +56,8 @@ func increase_jumpHeight(jumpHeight_inc_amt) -> void:
 func increase_attackSpeed(attackSpeed_inc_amt) -> void:
 	attack_speed *= attackSpeed_inc_amt
 	print("increase attack speed by: *", attackSpeed_inc_amt)
+
+func increase_heath(health_inc_amt) -> void:
+	max_health += health_inc_amt
+	health += health_inc_amt
+	print("increase health by: ", health_inc_amt)
