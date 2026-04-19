@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 				if PlayerManager.spend_coins(1):
 					$Gacha.spin()
 			"door":
+				PlayerManager.load_ronins_for_run()
 				SceneLoader.change_scene("res://Floor1/scenes/floor1.tscn")
 
 func _input(event):

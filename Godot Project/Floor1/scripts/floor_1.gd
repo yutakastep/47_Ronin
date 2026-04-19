@@ -30,8 +30,8 @@ func _notification(what):
 	
 func _on_ronin_death(_ronin):
 	ronin_spawn = current_ronin.global_position
-	spawn_ronin()
 	GameEvents.ronin_death.emit()
+	spawn_ronin()
 	
 func spawn_ronin():
 	current_ronin  = PlayerManager.spawn_player(self, ronin_spawn)
