@@ -3,7 +3,7 @@ extends SwordRonin
 var moveable = true
 
 func _ready():
-	speed = 50
+	speed = 300
 	apply_variant()
 
 func _process(delta: float) -> void:

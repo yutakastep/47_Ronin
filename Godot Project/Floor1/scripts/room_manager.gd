@@ -179,7 +179,6 @@ func default_grid() -> Array:
 		grid.push_back([])
 		for col in range(0, grid_w):
 			var placeholder = load("res://Floor1/scenes/Rooms/Room_Placeholder.tscn").instantiate()
-			add_child(placeholder) 
 			grid[row].push_back(placeholder)
 			grid[row][col].position.x = room_w * col
 	var temp = range(1, grid_w-2)
@@ -252,8 +251,9 @@ func room_generation() -> Array:
 		for row in grid:
 			for room in row:
 				if is_instance_valid(room):
-					room.queue_free()
+					room.free()
 		grid = []
+		end_found = false
 	
 		start_end_location = default_grid()
 		end_coords = start_end_location[1]
@@ -286,6 +286,8 @@ func room_generation() -> Array:
 	#return [Vector2(room_w * (rooms.size()-1)+240, room_h)]
 	var clean_up = sub_layer["midair"]
 	for col in range(0, grid_w):
+		if not is_instance_valid(grid[0][col]):
+			continue
 		if grid[0][col].get_node("room_info").section == "midair":
 			if grid_h == 2:
 				clean_up = sub_layer["midair"]
@@ -295,6 +297,7 @@ func room_generation() -> Array:
 					grid[1][col] = load(clean_up.pick_random()).instantiate()
 				else:
 					print("h == 2 Clean Up Failed For ", grid[0][col].scene_file_path)
+					grid[1][col] = load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate()
 			else:
 				for i in range(1, grid_h-2):
 					clean_up = sub_layer["midair"]
@@ -304,6 +307,7 @@ func room_generation() -> Array:
 						grid[i][col] = load(clean_up.pick_random()).instantiate()
 					else:
 						print("Clean Up Failed for ", grid[0][col].scene_file_path)
+						grid[i][col] = load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate()
 				clean_up = sub_layer["midair"]
 				clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
 				clean_up = search_keyword(clean_up, "keyword", "2_Tall_Top")
@@ -311,6 +315,7 @@ func room_generation() -> Array:
 					grid[grid_h-2][col] = load(clean_up.pick_random()).instantiate()
 				else:
 					print("Clean Up Failed for ", grid[0][col].scene_file_path)
+					grid[grid_h-2][col] = load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate()
 				clean_up = sub_layer["midair"]
 				clean_up = search_array(clean_up, "associated_room", grid[0][col].scene_file_path)
 				clean_up = search_keyword(clean_up, "keyword", "2_Tall_Bottom")
@@ -319,6 +324,7 @@ func room_generation() -> Array:
 					grid[grid_h-1][col] = load(clean_up.pick_random()).instantiate()
 				else:
 					print("Clean Up Failed for ", grid[0][col].scene_file_path)
+					grid[grid_h-1][col] = load("res://Floor1/scenes/Rooms/sub_layer/earth/Room_15.tscn").instantiate()
 	for row in range(0, grid_h):
 		for col in range(0, grid_w):
 			grid[row][col].position = Vector2(room_w * col, room_h * row)
